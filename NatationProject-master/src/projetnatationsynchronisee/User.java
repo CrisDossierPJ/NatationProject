@@ -9,10 +9,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,8 +26,8 @@ public class User {
 
     String login;
     String passwd;
-    boolean estAdmin;
-    boolean estCreateurCompet;
+    int estAdmin;
+    int estCreateurCompet;
     int id_personne;
 
     Connection connexion = null;
@@ -37,7 +41,6 @@ public class User {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            System.out.println("Le pilote JDBC MySQL a été chargé");
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/" + nomBdd, identifiant, pass);
 
         } catch (ClassNotFoundException e) {
@@ -47,6 +50,33 @@ public class User {
         }
     }
 
+    public DefaultTableModel buildTableModelUser() throws SQLException {
+        Statement statement = connexion.createStatement();
+        ResultSet rs = statement.executeQuery("select * from user");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
+        }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
+
+    }
+
     /**
      *
      */
@@ -54,7 +84,7 @@ public class User {
         Connection_User();
     }
 
-    public User(String login, String passwd, boolean estAdmin, boolean estCreateurCompet, int id_personne) throws SQLException {
+    public User(String login, String passwd, int estAdmin, int estCreateurCompet, int id_personne) throws SQLException {
         Connection_User();
         this.login = login;
         this.passwd = passwd;
@@ -63,7 +93,8 @@ public class User {
         this.id_personne = id_personne;
 
         try (Statement statement = connexion.createStatement()) {
-            statement.executeUpdate("INSERT INTO `user`(`login`, `passwd`, `estAdmin`, `estCreateurCompet`, `id_personne`) VALUES (" + login + "," + passwd + "," + estAdmin + "," + estCreateurCompet + "," + id_personne + " ) ");
+            System.out.println("INSERT INTO `user`(`login`, `passwd`, `estAdmin`, `estCreateurCompet`, `id_personne`) VALUES ('" + login + "','" + passwd + "','" + estAdmin + "','" + estCreateurCompet + "','" + id_personne + "' ) ");
+            statement.executeUpdate("INSERT INTO `user`(`login`, `passwd`, `estAdmin`, `estCreateurCompet`, `id_personne`) VALUES ('" + login + "','" + passwd + "','" + estAdmin + "','" + estCreateurCompet + "','" + id_personne + "' ) ");
         }
         connexion.close();
     }
@@ -90,7 +121,7 @@ public class User {
     public String getLogin(int id_personne) throws SQLException {
         Connection_User();
         Statement statement = connexion.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM user WHERE id_personne = " + id_personne + "'");
+        ResultSet result = statement.executeQuery("SELECT * FROM user WHERE id_personne = '" + id_personne + "'");
         while (result.next()) {
             return result.getString("login");
         }
@@ -98,11 +129,11 @@ public class User {
         return "Id_personne non existant";
     }
 
-    public void setLogin(String login) throws SQLException {
+    public void setLogin(String login, int id_personne) throws SQLException {
         Connection_User();
         Connection_User();
         this.login = login;
-        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET login = '" + login + "'");
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET login = '" + login + "' WHERE id_personne = '"+id_personne + "'");
         resultSet = stmt.executeQuery();
         connexion.close();
 
@@ -113,15 +144,26 @@ public class User {
 
     }
 
-    public void setPasswd(String passwd) throws SQLException {
+    public void setPasswd(String passwd, int id_personne) throws SQLException {
         Connection_User();
         this.passwd = passwd;
-        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET login = '" + passwd + "'");
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET passwd = '" + passwd + "' WHERE id_personne = '" + id_personne + "'");
         resultSet = stmt.executeQuery();
         connexion.close();
     }
 
-    public boolean isEstAdmin(String user_login) throws SQLException {
+    public boolean isEstAdmin(int id_personne) throws SQLException {
+        Connection_User();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM user WHERE id_personne = '" + id_personne + "'");
+        while (result.next()) {
+            return result.getBoolean("estAdmin");
+        }
+
+        return false;
+
+    }
+    public boolean isEstAdminAuth(String user_login) throws SQLException {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user WHERE login = '" + user_login + "'");
@@ -133,18 +175,18 @@ public class User {
 
     }
 
-    public void setEstAdmin(boolean estAdmin) throws SQLException {
+    public void setEstAdmin(int estAdmin,  int id_personne) throws SQLException {
         Connection_User();
         this.estAdmin = estAdmin;
-        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET login = '" + estAdmin + "'");
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET estAdmin = '" + estAdmin + "' WHERE id_personne = '" + id_personne + "'");
         resultSet = stmt.executeQuery();
         connexion.close();
     }
 
-    public boolean isEstCreateurCompet(String user_login) throws SQLException {
+    public boolean isEstCreateurCompet(int id_personne) throws SQLException {
         Connection_User();
         Statement statement = connexion.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM user WHERE id_personne = '" + user_login + "'");
+        ResultSet result = statement.executeQuery("SELECT * FROM user WHERE id_personne = '" + id_personne + "'");
         while (result.next()) {
             return result.getBoolean("estCreateurCompet");
         }
@@ -152,22 +194,12 @@ public class User {
         return false;
     }
 
-    public void setEstCreateurCompet(boolean estCreateurCompet) throws SQLException {
+    public void setEstCreateurCompet(int estCreateurCompet, int id_personne) throws SQLException {
         Connection_User();
         this.estCreateurCompet = estCreateurCompet;
-        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET login = '" + estCreateurCompet + "'");
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE user SET estCreateurCompet = '" + estCreateurCompet + "' WHERE id_personne = '" + id_personne + "'");
         resultSet = stmt.executeQuery();
         connexion.close();
-    }
-
-    public int getId_personne(String user_login) throws SQLException {
-        Connection_User();
-        Statement statement = connexion.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM user WHERE id_personne = '" + user_login + "'");
-        while (result.next()) {
-            return result.getInt("estCreateurCompet");
-        }
-        return 0;
     }
 
     public void setId_personne(int id_personne) {
