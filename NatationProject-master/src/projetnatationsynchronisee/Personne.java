@@ -35,12 +35,15 @@ public class Personne {
     String nomBdd = bundle.getString("bdd.name");
     String identifiant = bundle.getString("bdd.login");
     String pass = bundle.getString("bdd.password");
+    String host = bundle.getString("bdd.hostname");
+    String port = bundle.getString("bdd.port");
 
     public void Connection_Personne() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            // Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("org.postgresql.Driver");
 
-            connexion = DriverManager.getConnection("jdbc:mysql://localhost/" + nomBdd, identifiant, pass);
+            connexion = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + nomBdd, identifiant, pass);
 
         } catch (ClassNotFoundException e) {
             System.out.println(e);
@@ -72,13 +75,14 @@ public class Personne {
             }
             data.add(vector);
         }
-
+        statement.close();
         return new DefaultTableModel(data, columnNames);
 
     }
 
-    public Personne() {
-
+    public Personne() throws SQLException {
+        Connection_Personne();
+        connexion.close();
     }
 
     public Personne(String nom, String prenom, String dateNaissance, String dateCreation) throws SQLException {
@@ -88,10 +92,12 @@ public class Personne {
         this.dateNaissance = dateNaissance;
         this.dateCreation = dateCreation;
         try (Statement statement = connexion.createStatement()) {
-            String sql = "INSERT INTO `personne`(`nom`, `prenom`, `dateCreation`, `dateDeNaissance`) VALUES ('" + nom + "','" + prenom + "','" + dateNaissance + "','" + dateCreation + "')";
-           
+            String sql = "INSERT INTO personne(nom, prenom, dateCreation, dateDeNaissance) VALUES ('" + nom + "','" + prenom + "','" + dateNaissance + "','" + dateCreation + "')";
+
             statement.executeUpdate(sql);
+            statement.close();
         }
+
         connexion.close();
     }
 
@@ -111,7 +117,8 @@ public class Personne {
         while (result.next()) {
             return result.getString("nom");
         }
-
+        statement.close();
+        connexion.close();
         return "Id_personne non existant";
     }
 
@@ -122,6 +129,7 @@ public class Personne {
 
         PreparedStatement stmt = connexion.prepareStatement("UPDATE personne SET nom = '" + nom + "' WHERE id_personne = '" + id_personne + "'");
         stmt.executeUpdate();
+        stmt.close();
         connexion.close();
     }
 
@@ -132,7 +140,8 @@ public class Personne {
         while (result.next()) {
             return result.getString("prenom");
         }
-
+        statement.close();
+        connexion.close();
         return "Id_personne non existant";
     }
 
@@ -141,6 +150,7 @@ public class Personne {
         this.prenom = prenom;
         PreparedStatement stmt = connexion.prepareStatement("UPDATE personne SET prenom = '" + prenom + "' WHERE id_personne = '" + id_personne + "'");
         stmt.executeUpdate();
+        stmt.close();
         connexion.close();
     }
 
@@ -152,7 +162,8 @@ public class Personne {
         while (result.next()) {
             return result.getString("datedenaissance");
         }
-
+        statement.close();
+        connexion.close();
         return "";
 
     }
@@ -162,6 +173,7 @@ public class Personne {
         this.dateNaissance = dateNaissance;
         PreparedStatement stmt = connexion.prepareStatement("UPDATE personne SET dateDeNaissance = '" + dateNaissance + "' WHERE id_personne = '" + id_personne + "'");
         stmt.executeUpdate();
+        stmt.close();
         connexion.close();
     }
 
@@ -173,7 +185,8 @@ public class Personne {
         while (result.next()) {
             return result.getString("datecreation");
         }
-
+        statement.close();
+        connexion.close();
         return "";
 
     }
@@ -184,6 +197,7 @@ public class Personne {
 
         PreparedStatement stmt = connexion.prepareStatement("UPDATE personne SET dateCreation = '" + dateCreation + "' WHERE id_personne = '" + id_personne + "'");
         stmt.executeUpdate();
+        stmt.close();
         connexion.close();
     }
 
@@ -191,6 +205,7 @@ public class Personne {
         Connection_Personne();
         PreparedStatement stmt = connexion.prepareStatement("DELETE FROM personne WHERE id_personne = '" + id_personne + "'");
         stmt.executeUpdate();
+        stmt.close();
         connexion.close();
     }
 
@@ -209,13 +224,14 @@ public class Personne {
 
         String tabNomPrenom[] = new String[taille];
 
-
         while (result.next()) {
 
             tabNomPrenom[i] = result.getString("id_personne") + "-" + result.getString("nom") + " " + result.getString("prenom");
             i++;
 
         }
+        statement.close();
+        connexion.close();
         return tabNomPrenom;
 
     }
@@ -242,7 +258,8 @@ public class Personne {
             i++;
 
         }
-
+        statement.close();
+        connexion.close();
         return tabID;
 
     }
