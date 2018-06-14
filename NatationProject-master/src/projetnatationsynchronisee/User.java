@@ -110,7 +110,7 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
 
-        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + User + "' AND passwd = '" + pass + "'");
+        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + User + "' AND passwd = crypt('"+pass+"',passwd)");
         if (result.next() == false) {
             JOptionPane.showMessageDialog(null, "Oups ! Login/Mdp incorrect ! Recommencez");
             statement.close();
@@ -211,7 +211,7 @@ public class User {
                 while (resultJuge.next()) {
                     return resultJuge.getBoolean("estArbitre");
                 }
-                
+
             }
 
         }

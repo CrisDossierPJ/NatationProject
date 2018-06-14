@@ -7,6 +7,7 @@ package projetnatationsynchronisee;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -91,6 +92,7 @@ public class Nageuse {
     }
 
     public int getId_personne() {
+        
         return id_personne;
     }
 
@@ -150,6 +152,14 @@ public class Nageuse {
         connexion.close();
         return tabID;
 
+    }
+
+    public void deleteNageuse(int id_personne) throws SQLException {
+        Connection_Nageuse();
+        PreparedStatement stmt = connexion.prepareStatement("DELETE FROM nageuse WHERE id_personne = '" + id_personne + "'");
+        stmt.executeUpdate();
+        stmt.close();
+        connexion.close();
     }
 
 }
