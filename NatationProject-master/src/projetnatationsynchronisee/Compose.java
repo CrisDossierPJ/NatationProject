@@ -5,6 +5,16 @@
  */
 package projetnatationsynchronisee;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ResourceBundle;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author attiac
@@ -13,8 +23,28 @@ public class Compose {
 
     int id_equipe;
     int id_personne;
+    
+    Connection connexion = null;
+    ResultSet resultSet = null;
+    ResourceBundle bundle = ResourceBundle.getBundle("natation.properties.config");
+    String nomBdd = bundle.getString("bdd.name");
+    String identifiant = bundle.getString("bdd.login");
+    String pass = bundle.getString("bdd.password");
+    String host = bundle.getString("bdd.hostname");
+    String port = bundle.getString("bdd.port");
 
-    public Compose() {
+    public void Connection_Compose() {
+                try {
+            // Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("org.postgresql.Driver");
+
+            connexion = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + nomBdd, identifiant, pass);
+
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     public Compose(int id_equipe, int id_personne) {

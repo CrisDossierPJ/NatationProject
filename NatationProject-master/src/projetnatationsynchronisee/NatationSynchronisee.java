@@ -40,6 +40,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private DefaultTableModel dataModelCompet;
     private DefaultTableModel dataModelEquipe;
     private DefaultTableModel dataModelNageuse;
+    private DefaultTableModel dataModelNote;
 
     User utilisateur = new User();
     Personne personne = new Personne();
@@ -48,6 +49,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     Equipe equipe = new Equipe();
     Competition compet = new Competition();
     Nageuse nageuse = new Nageuse();
+    note note = new note();
     JFrame fenetre = new JFrame();
     boolean popupBool = false;
     JLabel labelLogin = new JLabel();
@@ -62,6 +64,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         dataModelCompet = compet.buildTableModelCompetition();
         dataModelEquipe = equipe.buildTableModelEquipe();
         dataModelNageuse = nageuse.buildTableModelNageuse();
+        dataModelNote = note.buildTableModelNote();
         popup();
 
     }
@@ -72,12 +75,14 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         dataModelClub = club.buildTableModelClub();
         dataModelCompet = compet.buildTableModelCompetition();
         dataModelEquipe = equipe.buildTableModelEquipe();
-        dataModelNageuse = nageuse.buildTableModelNageuse();;
+        dataModelNageuse = nageuse.buildTableModelNageuse();
+        dataModelNote = note.buildTableModelNote();
         this.tablePersonne.setModel(this.dataModelPersonne);
         this.jTableUser.setModel(this.dataModelUser);
         this.jtableClub.setModel(this.dataModelClub);
         this.jTableCompet.setModel(this.dataModelCompet);
         this.jTableEquipe.setModel(this.dataModelEquipe);
+        this.jTableNote.setModel(this.dataModelNote);
 
         DefaultComboBoxModel modelPersonne = new DefaultComboBoxModel(personneForUser());
         DefaultComboBoxModel modelCompet = new DefaultComboBoxModel(competForEquipe());
@@ -278,7 +283,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             buttonCreateEquipe1 = new javax.swing.JButton();
             jPanel4 = new javax.swing.JPanel();
             jScrollPane2 = new javax.swing.JScrollPane();
-            jTable2 = new javax.swing.JTable();
+            jTableNote = new javax.swing.JTable();
             jButton6 = new javax.swing.JButton();
             jLabel19 = new javax.swing.JLabel();
             panelAdmin = new javax.swing.JPanel();
@@ -701,7 +706,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel3)
@@ -1099,7 +1104,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                             jTabbedPane2.addTab("Créateur de compétition", jPanel3);
 
-                            jTable2.setModel(new javax.swing.table.DefaultTableModel(
+                            jTableNote.setModel(new javax.swing.table.DefaultTableModel(
                                 new Object [][] {
                                     {null, null, null, null},
                                     {null, null, null, null},
@@ -1110,12 +1115,13 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                     "Title 1", "Title 2", "Title 3", "Title 4"
                                 }
                             ));
-                            jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+                            this.jTableNote.setModel(this.dataModelNote);
+                            jTableNote.addMouseListener(new java.awt.event.MouseAdapter() {
                                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                    jTable2MouseClicked(evt);
+                                    jTableNoteMouseClicked(evt);
                                 }
                             });
-                            jScrollPane2.setViewportView(jTable2);
+                            jScrollPane2.setViewportView(jTableNote);
 
                             jButton6.setText("Enregistrer Résultat");
                             jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -1147,7 +1153,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                             jPanel4Layout.setVerticalGroup(
                                 jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addContainerGap(13, Short.MAX_VALUE)
+                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel19)
                                     .addGap(18, 18, 18)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1289,7 +1295,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(radioButAdm)
                                                         .addComponent(radioButCrea))))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                                                     .addComponent(textFindUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1320,15 +1326,15 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                         .addComponent(deleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                 .addComponent(jLabel30)
                                                 .addComponent(labelRangJuge))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel12Layout.createSequentialGroup()
                                             .addGap(70, 70, 70)
                                             .addComponent(jLabel31)
                                             .addGap(34, 34, 34))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addContainerGap())))
+                                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(55, 55, 55))))
                             );
                             jPanel12Layout.setVerticalGroup(
                                 jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1377,7 +1383,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                 .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(updateUser)))
-                                    .addContainerGap(32, Short.MAX_VALUE))
+                                    .addContainerGap(15, Short.MAX_VALUE))
                             );
 
                             jTabbedPane3.addTab("Créer utilisateur", jPanel12);
@@ -2217,7 +2223,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                         .addGap(51, 51, 51))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane3.addTab("Créer équipe", jPanel15);
@@ -2392,9 +2398,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonAddUserActionPerformed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void jTableNoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNoteMouseClicked
 
-    }//GEN-LAST:event_jTable2MouseClicked
+    }//GEN-LAST:event_jTableNoteMouseClicked
 
     private void SliderNoteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SliderNoteStateChanged
         // TODO add your handling code here:
@@ -3307,10 +3313,10 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableCompet;
     private javax.swing.JTable jTableEquipe;
     private javax.swing.JTable jTableNageuse;
+    private javax.swing.JTable jTableNote;
     private javax.swing.JTable jTableUser;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
