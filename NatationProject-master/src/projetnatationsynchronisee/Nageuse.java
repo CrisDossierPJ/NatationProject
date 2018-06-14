@@ -8,9 +8,12 @@ package projetnatationsynchronisee;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,7 +34,7 @@ public class Nageuse {
 
     public void Connection_Nageuse() {
         try {
-      // Class.forName("com.mysql.jdbc.Driver");
+            // Class.forName("com.mysql.jdbc.Driver");
             Class.forName("org.postgresql.Driver");
 
             connexion = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + nomBdd, identifiant, pass);
@@ -41,6 +44,39 @@ public class Nageuse {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+
+    public DefaultTableModel buildTableModelNageuse() throws SQLException {
+        Connection_Nageuse();
+        Statement statement = connexion.createStatement();
+        ResultSet rs = statement.executeQuery("select nageuse.*,p.nom, p.prenom from nageuse\n"
+                + " join personne p on  nageuse.id_personne = p.id_personne");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
+        }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+        connexion.close();
+        return new DefaultTableModel(data, columnNames);
+
+    }
+
+    public Nageuse() {
+
     }
 
     public Nageuse(int id_personne) throws SQLException {
@@ -60,6 +96,60 @@ public class Nageuse {
 
     public void setId_personne(int id_personne) {
         this.id_personne = id_personne;
+    }
+
+    public String[] getAllNageuse() throws SQLException {
+        Connection_Nageuse();
+        Statement statement = connexion.createStatement();
+        int taille = 0;
+        ResultSet count = statement.executeQuery("SELECT  count(*) nb FROM nageuse ");
+        while (count.next()) {
+            taille = Integer.parseInt(count.getString("nb"));
+        }
+
+        count.close();
+        int i = 0;
+        ResultSet result = statement.executeQuery("SELECT n.*,p.nom ,p.prenom FROM nageuse n join personne p on n.id_personne = p.id_personne");
+
+        String tabNomPrenom[] = new String[taille];
+
+        while (result.next()) {
+
+            tabNomPrenom[i] = result.getString("id_personne") + "-" + result.getString("nom") + " " + result.getString("prenom");
+            i++;
+
+        }
+        statement.close();
+        connexion.close();
+        return tabNomPrenom;
+    }
+
+    public String[] getIdNageuse() throws SQLException {
+        Connection_Nageuse();
+        Statement statement = connexion.createStatement();
+
+        int taille = 0;
+        ResultSet count = statement.executeQuery("SELECT  count(*) nb FROM nageuse ");
+        while (count.next()) {
+            taille = Integer.parseInt(count.getString("nb"));
+        }
+
+        count.close();
+        ResultSet result = statement.executeQuery("SELECT * FROM nageuse ");
+        int i = 0;
+
+        String tabID[] = new String[taille];
+
+        while (result.next()) {
+
+            tabID[i] = result.getString("id_personne");
+            i++;
+
+        }
+        statement.close();
+        connexion.close();
+        return tabID;
+
     }
 
 }

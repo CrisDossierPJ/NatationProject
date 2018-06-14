@@ -188,6 +188,39 @@ public class User {
 
     }
 
+    public boolean isCreateurCompetAuth(String user_natation_login) throws SQLException {
+        Connection_User();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + user_natation_login + "'");
+        while (result.next()) {
+            return result.getBoolean("estcreateurCompet");
+        }
+        statement.close();
+        connexion.close();
+        return false;
+
+    }
+
+    public boolean isJugeArbAuth(String user_natation_login) throws SQLException {
+        Connection_User();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + user_natation_login + "'");
+        while (result.next()) {
+            if (result.getBoolean("estcreateurCompet") == false && result.getBoolean("estadmin") == false) {
+                ResultSet resultJuge = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + result.getInt("id_personne") + "'");
+                while (resultJuge.next()) {
+                    return resultJuge.getBoolean("estArbitre");
+                }
+                
+            }
+
+        }
+        statement.close();
+        connexion.close();
+        return false;
+
+    }
+
     public void setEstAdmin(int estAdmin, int id_personne) throws SQLException {
         Connection_User();
         this.estAdmin = estAdmin;
