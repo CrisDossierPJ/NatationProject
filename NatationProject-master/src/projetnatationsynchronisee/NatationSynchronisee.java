@@ -379,12 +379,12 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                             jLabel70 = new javax.swing.JLabel();
                             jButton5 = new javax.swing.JButton();
                             jButton7 = new javax.swing.JButton();
-                            jComboBox4 = new javax.swing.JComboBox<>();
-                            jComboBox12 = new javax.swing.JComboBox<>();
                             jLabel71 = new javax.swing.JLabel();
                             jScrollPane8 = new javax.swing.JScrollPane();
                             jTableNageuse = new javax.swing.JTable();
                             jToggleButton1 = new javax.swing.JToggleButton();
+                            boxEquipeNaj = new javax.swing.JComboBox<>(EquipeForNageuse());
+                            boxNaj = new javax.swing.JComboBox<>(AllNageuse());
                             jPanel15 = new javax.swing.JPanel();
                             jLabel10 = new javax.swing.JLabel();
                             jLabel11 = new javax.swing.JLabel();
@@ -1084,23 +1084,22 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                             jPanel3Layout.setHorizontalGroup(
                                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGap(100, 100, 100)
-                                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGap(374, 374, 374)
-                                            .addComponent(jLabel4)))
-                                    .addContainerGap(80, Short.MAX_VALUE))
+                                    .addGap(374, 374, 374)
+                                    .addComponent(jLabel4)
+                                    .addContainerGap(392, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(84, 84, 84))
                             );
                             jPanel3Layout.setVerticalGroup(
                                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap())
+                                    .addGap(16, 16, 16))
                             );
 
                             jTabbedPane2.addTab("Créateur de compétition", jPanel3);
@@ -1918,10 +1917,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                 }
             });
 
-            jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-            jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
             jLabel71.setText("Equipe");
 
             jTableNageuse.setModel(new javax.swing.table.DefaultTableModel(
@@ -1950,6 +1945,12 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                 }
             });
 
+            boxEquipeNaj.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    boxEquipeNajActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
             jPanel8.setLayout(jPanel8Layout);
             jPanel8Layout.setHorizontalGroup(
@@ -1960,9 +1961,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                     .addGap(187, 187, 187)
-                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel70)
-                                        .addComponent(jLabel68)))
+                                    .addComponent(jLabel68))
                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1971,21 +1970,26 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addComponent(jLabel71))
                                     .addGap(31, 31, 31)
                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(listePersonneForNageuse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE))
+                                        .addComponent(boxEquipeNaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boxNaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE))
                         .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addContainerGap(181, Short.MAX_VALUE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                                     .addComponent(jButton5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
                                     .addComponent(jButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
                                     .addComponent(jToggleButton1)
-                                    .addGap(18, 18, 18)))))
+                                    .addGap(18, 18, 18))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel70)
+                            .addGap(176, 176, 176)))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2005,7 +2009,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                         .addComponent(jToggleButton1))
                     .addGap(18, 18, 18)
                     .addComponent(jLabel70)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5)
                     .addGap(46, 46, 46))
                 .addGroup(jPanel8Layout.createSequentialGroup()
@@ -2015,15 +2019,17 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                         .addComponent(listePersonneForNageuse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(92, 92, 92)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel67)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(21, 21, 21)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel71)
-                        .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(132, Short.MAX_VALUE))
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel67)
+                            .addGap(24, 24, 24)
+                            .addComponent(jLabel71))
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(boxNaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(boxEquipeNaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(19, Short.MAX_VALUE)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2240,23 +2246,23 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         panelAdmin.setLayout(panelAdminLayout);
         panelAdminLayout.setHorizontalGroup(
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAdminLayout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(184, 184, 184))
+            .addGroup(panelAdminLayout.createSequentialGroup()
+                .addGap(395, 395, 395)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelAdminLayout.setVerticalGroup(
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdminLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Admin", panelAdmin);
@@ -2308,6 +2314,18 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         String[] valeurs = null;
         try {
             valeurs = personne.getAllPersonne();
+
+            return valeurs;
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valeurs;
+    }
+
+    public String[] AllNageuse() {
+        String[] valeurs = null;
+        try {
+            valeurs = nageuse.getAllNageuse();
 
             return valeurs;
         } catch (SQLException ex) {
@@ -2651,7 +2669,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                 }
             }
             for (int i = 0; i < tabCompetID.length; i++) {
-
+                    System.out.println(tabCompetID[i]);
                 if (Integer.parseInt(tabCompetID[i]) == equipe.getId_club(id_equipe)) {
                     indexCompet = i;
 
@@ -3112,7 +3130,39 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     }//GEN-LAST:event_textdateCreationClub1ActionPerformed
 
     private void jTableNageuseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNageuseMouseClicked
-        // TODO add your handling code here:
+        try {
+            int viewRow = jTableNageuse.getSelectedRow();
+            int modelRow = jTableNageuse.convertRowIndexToModel(viewRow);
+            int indexPers = 0;
+            String tabIdPers[] = personne.getIdPersonne();
+            for (int i = 0; i < tabIdPers.length; i++) {
+
+                if (tabIdPers[i].equals((jTableNageuse.getModel().getValueAt(modelRow, jTableNageuse.getSelectedColumn())).toString())) {
+                    indexPers = i;
+
+                    break;
+
+                }
+            }
+            String tabIdNag[] = nageuse.getIdNageuse();
+            int indexnag = 0;
+            for (int i = 0; i < tabIdNag.length; i++) {
+
+                if (tabIdNag[i].equals((jTableNageuse.getModel().getValueAt(modelRow, jTableNageuse.getSelectedColumn())).toString())) {
+                    indexnag = i;
+                    break;
+
+                }
+            }
+
+            listePersonneForNageuse.setSelectedIndex(indexPers);
+            boxNaj.setSelectedIndex(indexnag);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_jTableNageuseMouseClicked
 
     private void jButtonPenaliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPenaliteActionPerformed
@@ -3153,6 +3203,10 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void boxEquipeNajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxEquipeNajActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxEquipeNajActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3204,6 +3258,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxClubForNaj;
     private javax.swing.JComboBox<String> boxCompetForEquipe;
     private javax.swing.JComboBox<String> boxCompetForEquipe1;
+    private javax.swing.JComboBox<String> boxEquipeNaj;
+    private javax.swing.JComboBox<String> boxNaj;
     private javax.swing.JComboBox<String> boxPenaliteEquipe;
     private javax.swing.JComboBox<String> boxRang;
     private javax.swing.JComboBox<String> boxVisible;
@@ -3235,9 +3291,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonPenalite;
-    private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

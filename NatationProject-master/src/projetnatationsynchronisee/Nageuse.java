@@ -137,7 +137,7 @@ public class Nageuse {
         }
 
         count.close();
-        ResultSet result = statement.executeQuery("SELECT * FROM nageuse ");
+        ResultSet result = statement.executeQuery("SELECT n.id_personne,n.*,p.nom ,p.prenom FROM nageuse n join personne p on n.id_personne = p.id_personne");
         int i = 0;
 
         String tabID[] = new String[taille];
