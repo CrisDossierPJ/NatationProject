@@ -46,10 +46,49 @@ public class Compose {
             System.out.println(e);
         }
     }
+    
+    public Compose() {
+    }
+    
+    public DefaultTableModel buildTableModelCompose() throws SQLException {
+    Connection_Compose();
+    Statement statement = connexion.createStatement();
+    ResultSet rs = statement.executeQuery("select * from compose");
 
-    public Compose(int id_equipe, int id_personne) {
+    ResultSetMetaData metaData = rs.getMetaData();
+
+    // names of columns
+    Vector<String> columnNames = new Vector<String>();
+    int columnCount = metaData.getColumnCount();
+    for (int column = 1; column <= columnCount; column++) {
+        columnNames.add(metaData.getColumnName(column));
+    }
+
+    // data of the table
+    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+    while (rs.next()) {
+        Vector<Object> vector = new Vector<Object>();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+            vector.add(rs.getObject(columnIndex));
+        }
+        data.add(vector);
+    }
+    statement.close();
+    return new DefaultTableModel(data, columnNames);
+    }
+    
+    public Compose(int id_equipe, int id_personne) throws SQLException {
+        Connection_Compose();
         this.id_equipe = id_equipe;
         this.id_personne = id_personne;
+        this.id_personne = id_personne;        
+        try (Statement statement = connexion.createStatement()) {
+            String sql = "INSERT INTO compose(id_equipe, id_personne) VALUES ('" + id_equipe + "','" + id_personne + "')";
+
+            statement.executeUpdate(sql);
+            statement.close();
+        }
+        connexion.close();
     }
 
     public int getId_equipe() {

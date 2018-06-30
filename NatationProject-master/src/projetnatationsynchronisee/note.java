@@ -7,6 +7,7 @@ package projetnatationsynchronisee;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -80,18 +81,41 @@ public class note {
 
     }
 
-    public note(int note, int id_equipe, int id_personne) {
+    public note(int note, int id_equipe, int id_personne) throws SQLException {
+        Connection_Note();
         this.note = note;
         this.id_equipe = id_equipe;
         this.id_personne = id_personne;
+        try (Statement statement = connexion.createStatement()) {
+            String sql = "INSERT INTO note(note, id_equipe, id_personne) VALUES ('" + note + "','" + id_equipe + "','" + id_personne + "')";
+
+            statement.executeUpdate(sql);
+            statement.close();
+        }
+
+        connexion.close();
+        
     }
 
-    public int getNote() {
-        return note;
+    public int getNote(int id_equipe) throws SQLException {
+        Connection_Note();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM note WHERE id_equipe = '" + id_equipe + "'");
+        while (result.next()) {
+            return result.getInt("note");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
     }
 
-    public void setNote(int note) {
+    public void setNote(int note, int id_personne, int id_equipe) throws SQLException {
+        Connection_Note();
         this.note = note;
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE note SET note = '" + note + "' WHERE id_personne = '" + id_personne + "' AND id_equipe = '" + id_equipe + "'");
+        stmt.executeUpdate();
+        connexion.close();
+        stmt.close();
     }
 
     public int getId_equipe() {
@@ -102,12 +126,25 @@ public class note {
         this.id_equipe = id_equipe;
     }
 
-    public int getId_personne() {
-        return id_personne;
+    public int getId_personne(int id_equipe) throws SQLException  {
+        Connection_Note();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM note WHERE id_equipe = '" + id_equipe + "'");
+        while (result.next()) {
+            return result.getInt("id_equipe");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
     }
 
-    public void setId_personne(int id_personne) {
+    public void setId_personne(int id_personne, int id_equipe) throws SQLException {
+        Connection_Note();
         this.id_personne = id_personne;
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE id_personne SET id_personne = '" + id_personne + "' WHERE id_equipe = '" + id_equipe + "'");
+        stmt.executeUpdate();
+        connexion.close();
+        stmt.close();
     }
 
 }
