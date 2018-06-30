@@ -110,7 +110,7 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
 
-        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + User + "' AND passwd = crypt('"+pass+"',passwd)");
+        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + User + "' AND passwd = crypt('" + pass + "',passwd)");
         if (result.next() == false) {
             JOptionPane.showMessageDialog(null, "Oups ! Login/Mdp incorrect ! Recommencez");
             statement.close();
@@ -153,6 +153,12 @@ public class User {
 
     }
 
+
+    
+    
+
+    
+
     public void setPasswd(String passwd, int id_personne) throws SQLException {
         Connection_User();
         this.passwd = passwd;
@@ -193,6 +199,7 @@ public class User {
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + user_natation_login + "'");
         while (result.next()) {
+            id_personne = result.getInt("id_personne");
             return result.getBoolean("estcreateurCompet");
         }
         statement.close();
