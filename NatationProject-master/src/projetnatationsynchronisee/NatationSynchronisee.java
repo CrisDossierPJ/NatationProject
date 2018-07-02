@@ -78,7 +78,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         dataModelNageuse = nageuse.buildTableModelNageuse();
         dataModelNote = note.buildTableModelNote();
         dataModelNageuse = nageuse.buildTableModelNageuse();
-        
+
         this.tablePersonne.setModel(this.dataModelPersonne);
         this.jTableUser.setModel(this.dataModelUser);
         this.jtableClub.setModel(this.dataModelClub);
@@ -124,7 +124,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                         login(login.getText());
                         personne.setInfos(login.getText());
-                        labelNomJuge.setText("Bonjour " + personne.getNomAuth() +" "+ personne.getPrenomAuth() +" n°"+ juge.getRang(personne.getId_personne()));
+                        labelNomJuge.setText("Bonjour " + personne.getNomAuth() + " " + personne.getPrenomAuth() + " n°" + juge.getRang(personne.getId_personne()));
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,16 +206,16 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         labelNomJuge = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        buttonNoterJuge = new javax.swing.JButton();
         labelNote = new javax.swing.JLabel();
         SliderNote = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        valeur_penalite = new javax.swing.JComboBox<>();
         jButtonPenalite = new javax.swing.JButton();
-        boxClubForNaj = new javax.swing.JComboBox<>(EquipeForNageuse());
+        boxClubForPen = new javax.swing.JComboBox<>(EquipeForNageuse());
         jPanel6 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -232,8 +232,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel40 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        butonLanceBallet = new javax.swing.JButton();
+        stopBallet = new javax.swing.JButton();
         boxClubForLanc = new javax.swing.JComboBox<>(EquipeForNageuse());
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -447,7 +447,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                                 jLabel17.setText("Temps restant : ");
 
-                                jButton2.setText("Noter");
+                                buttonNoterJuge.setText("Noter");
 
                                 labelNote.setText("Note : ");
 
@@ -470,7 +470,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                 .addComponent(jLabel17)
                                                 .addGap(80, 80, 80))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugeLayout.createSequentialGroup()
-                                                .addComponent(jButton2)
+                                                .addComponent(buttonNoterJuge)
                                                 .addContainerGap())))
                                     .addGroup(panelJugeLayout.createSequentialGroup()
                                         .addGroup(panelJugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,7 +498,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(labelNote)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
-                                        .addComponent(jButton2)
+                                        .addComponent(buttonNoterJuge)
                                         .addContainerGap())
                                 );
 
@@ -510,7 +510,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                                 jLabel18.setText("Ajouter Pénalité");
 
-                                jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0.5", "1", "1.5", "2" }));
+                                valeur_penalite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0.5", "1", "1.5", "2" }));
 
                                 jButtonPenalite.setText("Mettre pénalité");
                                 jButtonPenalite.addActionListener(new java.awt.event.ActionListener() {
@@ -519,9 +519,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                     }
                                 });
 
-                                boxClubForNaj.addActionListener(new java.awt.event.ActionListener() {
+                                boxClubForPen.addActionListener(new java.awt.event.ActionListener() {
                                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        boxClubForNajActionPerformed(evt);
+                                        boxClubForPenActionPerformed(evt);
                                     }
                                 });
 
@@ -533,9 +533,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addContainerGap()
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addComponent(boxClubForNaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(boxClubForPen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(43, 43, 43)
-                                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(valeur_penalite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                                 .addGap(0, 86, Short.MAX_VALUE)
@@ -554,8 +554,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addComponent(jLabel18)
                                         .addGap(31, 31, 31)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(boxClubForNaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(valeur_penalite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(boxClubForPen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButtonPenalite)
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -653,12 +653,17 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                                 jLabel40.setText("Lancer équipe : ");
 
-                                jButton13.setText("Lancer Ballet");
-
-                                jButton11.setText("Arreter ballet");
-                                jButton11.addActionListener(new java.awt.event.ActionListener() {
+                                butonLanceBallet.setText("Lancer Ballet");
+                                butonLanceBallet.addActionListener(new java.awt.event.ActionListener() {
                                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        jButton11ActionPerformed(evt);
+                                        butonLanceBalletActionPerformed(evt);
+                                    }
+                                });
+
+                                stopBallet.setText("Arreter ballet");
+                                stopBallet.addActionListener(new java.awt.event.ActionListener() {
+                                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        stopBalletActionPerformed(evt);
                                     }
                                 });
 
@@ -676,9 +681,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(jButton11)
+                                                .addComponent(stopBallet)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                                                .addComponent(jButton13))
+                                                .addComponent(butonLanceBallet))
                                             .addGroup(jPanel7Layout.createSequentialGroup()
                                                 .addGap(114, 114, 114)
                                                 .addComponent(jLabel40)
@@ -698,8 +703,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addComponent(boxClubForLanc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(33, 33, 33)
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jButton13)
-                                            .addComponent(jButton11))
+                                            .addComponent(butonLanceBallet)
+                                            .addComponent(stopBallet))
                                         .addContainerGap())
                                 );
 
@@ -2501,13 +2506,24 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void stopBalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBalletActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+        try {
+            // TODO add your handling code here:
+            //System.out.println(boxClubForLanc.getSelectedItem().toString());
+            String id_String = boxClubForLanc.getSelectedItem().toString();
+            id_String = id_String.substring(0, 1);
+            int id_equipe = Integer.parseInt(id_String);
+            equipe.setVisible(0, id_equipe);
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_stopBalletActionPerformed
 
     private void buttonUpdateCompetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateCompetActionPerformed
         // TODO add your handling code here:
         try {
+
             int viewRow = jTableCompet.getSelectedRow();
             int modelRow = jTableCompet.convertRowIndexToModel(viewRow);
 
@@ -3164,6 +3180,16 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
     private void jButtonPenaliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPenaliteActionPerformed
         // TODO add your handling code here:
+        try {
+            String var_string = boxClubForPen.getSelectedItem().toString();
+            String var_modif = var_string.substring(0, 1);
+            int equipe_int = Integer.parseInt(var_modif);
+            int penalite = Integer.parseInt(valeur_penalite.getSelectedItem().toString());
+            equipe.setPenalite(penalite, equipe_int);
+            refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //        equipe.setPenalite(HEIGHT, SOMEBITS);
     }//GEN-LAST:event_jButtonPenaliteActionPerformed
 
@@ -3171,9 +3197,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxClubForEquipeActionPerformed
 
-    private void boxClubForNajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxClubForNajActionPerformed
+    private void boxClubForPenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxClubForPenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boxClubForNajActionPerformed
+    }//GEN-LAST:event_boxClubForPenActionPerformed
 
     private void butDeleteNajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butDeleteNajActionPerformed
         try {
@@ -3204,6 +3230,19 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private void boxClubForLancActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxClubForLancActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxClubForLancActionPerformed
+
+    private void butonLanceBalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonLanceBalletActionPerformed
+        try {
+            // TODO add your handling code here:
+            //System.out.println(boxClubForLanc.getSelectedItem().toString());
+            String id_String = boxClubForLanc.getSelectedItem().toString();
+            id_String = id_String.substring(0, 1);
+            int id_equipe = Integer.parseInt(id_String);
+            equipe.setVisible(1, id_equipe);
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_butonLanceBalletActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3253,7 +3292,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxClubForEquipe;
     private javax.swing.JComboBox<String> boxClubForEquipe1;
     private javax.swing.JComboBox<String> boxClubForLanc;
-    private javax.swing.JComboBox<String> boxClubForNaj;
+    private javax.swing.JComboBox<String> boxClubForPen;
     private javax.swing.JComboBox<String> boxCompetForEquipe;
     private javax.swing.JComboBox<String> boxCompetForEquipe1;
     private javax.swing.JComboBox<String> boxEquipeNaj;
@@ -3262,6 +3301,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxRang;
     private javax.swing.JComboBox<String> boxVisible;
     private javax.swing.JToggleButton butDeleteNaj;
+    private javax.swing.JButton butonLanceBallet;
     private javax.swing.JButton buttonAddUser;
     private javax.swing.JButton buttonCreateClub;
     private javax.swing.JButton buttonCreateCompet;
@@ -3270,6 +3310,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JButton buttonDeleteClub;
     private javax.swing.JButton buttonDeleteEquipe;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton buttonNoterJuge;
     private javax.swing.JButton buttonSupprimerCompet;
     private javax.swing.JButton buttonUpdateClub;
     private javax.swing.JButton buttonUpdateCompet;
@@ -3277,19 +3318,15 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JButton deletePersonne;
     private javax.swing.JButton deleteUser;
     private javax.swing.JTextField fieldNomClub;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonPenalite;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3433,6 +3470,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioButCrea;
     private javax.swing.JRadioButton radioButJuge;
     private javax.swing.JRadioButton radioButJugeArb;
+    private javax.swing.JButton stopBallet;
     private javax.swing.JTable tablePersonne;
     private javax.swing.JTextField textFindClub;
     private javax.swing.JTextField textFindCompet;
@@ -3455,5 +3493,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JTextField textprenomPersonne;
     private javax.swing.JButton updatePersonne;
     private javax.swing.JButton updateUser;
+    private javax.swing.JComboBox<String> valeur_penalite;
     // End of variables declaration//GEN-END:variables
 }

@@ -99,8 +99,8 @@ public class Equipe {
         this.id_compet = id_compet;
 
         try (Statement statement = connexion.createStatement()) {
-            System.out.println("INSERT INTO equipe( nom_equipe, num_passage, penalite, visible, DateCreation, id_club, id_compet) VALUES ('"
-                    + nom_equipe + "','" + num_passage + "','" + penalite + "','" + Visible + "','" + DateCreation + "','" + id_club + "','" + id_compet + "')");
+            /* System.out.println("INSERT INTO equipe( nom_equipe, num_passage, penalite, visible, DateCreation, id_club, id_compet) VALUES ('"
+                    + nom_equipe + "','" + num_passage + "','" + penalite + "','" + Visible + "','" + DateCreation + "','" + id_club + "','" + id_compet + "')");*/
             statement.executeUpdate("INSERT INTO equipe( nom_equipe, num_passage, penalite, visible, DateCreation, id_club, id_compet) VALUES ('"
                     + nom_equipe + "','" + num_passage + "','" + penalite + "','" + Visible + "','" + DateCreation + "','" + id_club + "','" + id_compet + "')");
 
@@ -195,7 +195,13 @@ public class Equipe {
 
         Connection_Equipe();
         this.Visible = Visible;
-        PreparedStatement stmt = connexion.prepareStatement("UPDATE equipe SET Visible = '" + Visible + "' WHERE id_equipe = '" + id_equipe + "'");
+        String visible = "";
+        if (Visible == 0) {
+            visible = "false";
+        } else {
+            visible = "true";
+        }
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE equipe SET Visible = '" + visible + "' WHERE id_equipe = '" + id_equipe + "'");
         stmt.executeUpdate();
         connexion.close();
 
@@ -216,7 +222,7 @@ public class Equipe {
 
         Connection_Equipe();
         this.DateCreation = DateCreation;
-        PreparedStatement stmt = connexion.prepareStatement("UPDATE equipe SET Visible = '" + Visible + "' WHERE id_equipe = '" + id_equipe + "'");
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE equipe SET DateCreation = '" + DateCreation + "' WHERE id_equipe = '" + id_equipe + "'");
         stmt.executeUpdate();
         connexion.close();
 
