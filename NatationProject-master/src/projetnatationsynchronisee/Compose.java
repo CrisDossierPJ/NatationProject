@@ -104,17 +104,25 @@ public class Compose {
         return 0;
     }
 
-    public void setId_equipe(int id_equipe) throws SQLException {
+    public void setId_equipe(int id_equipe, int id_personne) throws SQLException {
         Connection_Compose();
         //  this.prenom = prenom;
-        PreparedStatement stmt = connexion.prepareStatement("UPDATE personne SET id_equipe = '" + id_equipe + "' WHERE id_personne = '" + id_personne + "'");
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE compose SET id_equipe = '" + id_equipe + "' WHERE id_personne = '" + id_personne + "'");
         stmt.executeUpdate();
         stmt.close();
         connexion.close();
     }
 
-    public int getId_personne() {
-        return id_personne;
+    public int getId_personne(int id_personne) throws SQLException {
+        Connection_Compose();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM compose WHERE id_personne = '" + id_personne + "'");
+        while (result.next()) {
+            return result.getInt("id_equipe");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
     }
 
     public void setId_personne(int id_personne) {
