@@ -283,4 +283,16 @@ public class User {
         stmt.close();
         connexion.close();
     }
+
+    public int getIdEquipeEncours() throws SQLException {
+        Connection_User();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("select * from equipe Where visible = true");
+        while (result.next()) {
+            return result.getInt("id_equipe");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
+    }
 }

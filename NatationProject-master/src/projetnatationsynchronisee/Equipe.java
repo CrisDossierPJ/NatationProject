@@ -105,6 +105,7 @@ public class Equipe {
                     + nom_equipe + "','" + num_passage + "','" + penalite + "','" + Visible + "','" + DateCreation + "','" + id_club + "','" + id_compet + "')");
 
         }
+
         connexion.close();
     }
 
@@ -375,5 +376,17 @@ public class Equipe {
         statement.close();
         connexion.close();
         return "Aucune equipe en cours";
+    }
+
+    public int getIdEquipeEncours() throws SQLException {
+        Connection_Equipe();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("select * from equipe Where visible = true");
+        while (result.next()) {
+            return result.getInt("id_equipe");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
     }
 }

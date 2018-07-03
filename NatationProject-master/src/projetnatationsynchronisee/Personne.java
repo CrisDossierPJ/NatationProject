@@ -105,12 +105,12 @@ public class Personne {
         return id_personne;
 
     }
-    
+
     public String getNomAuth() {
         return nom;
 
     }
-    
+
     public String getPrenomAuth() {
         return prenom;
 
@@ -184,7 +184,7 @@ public class Personne {
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation, personne WHERE user_natation.id_personne = personne.id_personne AND login = '" + user_natation_login + "'");
         while (result.next()) {
-            System.out.println( "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "+result.getInt("id_personne") + result.getString("nom") );
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
             this.id_personne = result.getInt("id_personne");
             this.nom = result.getString("nom");
             this.prenom = result.getString("prenom");
@@ -194,8 +194,6 @@ public class Personne {
         connexion.close();
 
     }
-    
-    
 
     public void setDateNaissance(String dateNaissance, int id_personne) throws SQLException {
         Connection_Personne();

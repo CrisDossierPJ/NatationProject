@@ -73,6 +73,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     }
 
     public void refresh() throws SQLException {
+
         buttonNoterJuge.setEnabled(false);
         TimerTask task = new RunMeTask(labelEquipe, labelMinuteur, 5, buttonNoterJuge);
         Timer timer = new Timer();
@@ -3339,9 +3340,11 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             // TODO add your handling code here:
             int curseur = SliderNote.getValue();
             int id_personne = personne.getId_personne();
-            int id_equipe = equipe.getId_equipe();
+            int id_equipe = equipe.getIdEquipeEncours();
             //System.out.print(id_personne);
             //System.out.print(id_equipe);
+            System.out.println("note : " + curseur + " Equipe ! " + id_equipe + " personne ! " + id_personne
+            );
             note = new note(curseur, id_equipe, id_personne);
             refresh();
         } catch (SQLException ex) {
