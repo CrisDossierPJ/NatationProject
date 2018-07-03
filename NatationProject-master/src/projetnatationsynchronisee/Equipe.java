@@ -25,7 +25,7 @@ public class Equipe {
     int id_equipe;
     String nom_equipe;
     int num_passage;
-    int penalite;
+    double penalite;
     int Visible;
     String DateCreation;
     int id_club;
@@ -170,7 +170,7 @@ public class Equipe {
         return 0;
     }
 
-    public void setPenalite(int penalite, int id_equipe) throws SQLException {
+    public void setPenalite(double penalite, int id_equipe) throws SQLException {
 
         Connection_Equipe();
         this.penalite = penalite;
@@ -330,6 +330,37 @@ public class Equipe {
         statement.close();
         connexion.close();
         return tabID;
+
+    }
+
+    public int getNoteEquipe(int rang) throws SQLException {
+        Connection_Equipe();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("select * from note\n"
+                + "join juge on juge.id_personne= note.id_personne\n"
+                + "join equipe on equipe.id_equipe = note.id_equipe\n"
+                + "WHERE rang = " + rang + " and equipe.visible = true;");
+        while (result.next()) {
+            return result.getInt("id_equipe");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
+
+    }
+     public int getNotejuge(int rang) throws SQLException {
+        Connection_Equipe();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("select * from note\n"
+                + "join juge on juge.id_personne= note.id_personne\n"
+                + "join equipe on equipe.id_equipe = note.id_equipe\n"
+                + "WHERE rang = " + rang + " and equipe.visible = true;");
+        while (result.next()) {
+            return result.getInt("id_personne");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
 
     }
 }

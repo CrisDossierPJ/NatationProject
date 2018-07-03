@@ -34,7 +34,7 @@ public class note {
     String pass = bundle.getString("bdd.password");
     String host = bundle.getString("bdd.hostname");
     String port = bundle.getString("bdd.port");
-    
+
     public void Connection_Note() {
         try {
             // Class.forName("com.mysql.jdbc.Driver");
@@ -51,7 +51,6 @@ public class note {
 
     public note() {
     }
-    
 
     public DefaultTableModel buildTableModelNote() throws SQLException {
         Connection_Note();
@@ -94,7 +93,7 @@ public class note {
         }
 
         connexion.close();
-        
+
     }
 
     public int getNote(int id_equipe) throws SQLException {
@@ -126,7 +125,7 @@ public class note {
         this.id_equipe = id_equipe;
     }
 
-    public int getId_personne(int id_equipe) throws SQLException  {
+    public int getId_personne(int id_equipe) throws SQLException {
         Connection_Note();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM note WHERE id_equipe = '" + id_equipe + "'");
@@ -145,6 +144,23 @@ public class note {
         stmt.executeUpdate();
         connexion.close();
         stmt.close();
+    }
+
+    public int getNotejuge(int rang) throws SQLException {
+
+        Connection_Note();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("select * from note\n"
+                + "join juge on juge.id_personne= note.id_personne\n"
+                + "join equipe on equipe.id_equipe = note.id_equipe\n"
+                + "WHERE rang = " + rang + " and equipe.visible = true;");
+        while (result.next()) {
+            return result.getInt("note");
+        }
+        statement.close();
+        connexion.close();
+        return 0;
+
     }
 
 }

@@ -153,12 +153,6 @@ public class User {
 
     }
 
-
-    
-    
-
-    
-
     public void setPasswd(String passwd, int id_personne) throws SQLException {
         Connection_User();
         this.passwd = passwd;
@@ -217,6 +211,26 @@ public class User {
                 ResultSet resultJuge = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + result.getInt("id_personne") + "'");
                 while (resultJuge.next()) {
                     return resultJuge.getBoolean("estArbitre");
+                }
+
+            }
+
+        }
+        statement.close();
+        connexion.close();
+        return false;
+
+    }
+
+    public boolean isJugeArb(int id_personne) throws SQLException {
+        Connection_User();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE id_personne = '" + id_personne + "'");
+        while (result.next()) {
+            if (result.getBoolean("estcreateurCompet") == false && result.getBoolean("estadmin") == false) {
+                ResultSet resultJuge = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + result.getInt("id_personne") + "'");
+                while (resultJuge.next()) {
+                    return resultJuge.getBoolean("estarbitre");
                 }
 
             }

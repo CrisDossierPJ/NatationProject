@@ -92,6 +92,7 @@ public class Juge {
         try (Statement statement = connexion.createStatement()) {
 
             statement.executeUpdate("INSERT INTO juge(Rang, estArbitre, id_personne) VALUES ('" + Rang + "','" + estArbitre + "','" + id_personne + "')");
+            System.out.println("INSERT INTO juge(Rang, estArbitre, id_personne) VALUES ('" + Rang + "','" + estArbitre + "','" + id_personne + "')");
             statement.close();
         }
         connexion.close();
