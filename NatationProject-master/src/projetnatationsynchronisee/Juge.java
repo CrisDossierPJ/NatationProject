@@ -153,5 +153,13 @@ public class Juge {
     public void setId_personne(int id_personne) {
         this.id_personne = id_personne;
     }
+    
+      public void deleteJuge(int id_personne) throws SQLException {
+        Connection_Juge();
+        PreparedStatement stmt = connexion.prepareStatement("DELETE FROM juge WHERE id_personne = '" + id_personne + "'");
+        stmt.executeUpdate();
+        stmt.close();
+        connexion.close();
+    }
 
 }

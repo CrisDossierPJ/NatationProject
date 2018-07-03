@@ -333,7 +333,7 @@ public class Equipe {
 
     }
 
-    public int getNoteEquipe(int rang) throws SQLException {
+    public int getIdEquipe(int rang) throws SQLException {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("select * from note\n"
@@ -348,7 +348,8 @@ public class Equipe {
         return 0;
 
     }
-     public int getNotejuge(int rang) throws SQLException {
+
+    public int getIdJuge(int rang) throws SQLException {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("select * from note\n"
@@ -362,5 +363,17 @@ public class Equipe {
         connexion.close();
         return 0;
 
+    }
+
+    public String getEquipeEncours() throws SQLException {
+        Connection_Equipe();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("select * from equipe Where visible = true");
+        while (result.next()) {
+            return result.getString("nom_equipe");
+        }
+        statement.close();
+        connexion.close();
+        return "Aucune equipe en cours";
     }
 }
