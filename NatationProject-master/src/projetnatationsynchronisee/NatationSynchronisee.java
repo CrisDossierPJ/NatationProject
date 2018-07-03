@@ -73,7 +73,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     }
 
     public void refresh() throws SQLException {
-        TimerTask task = new RunMeTask(labelMinuteur, 0, buttonNoterJuge);
+        buttonNoterJuge.setEnabled(false);
+        TimerTask task = new RunMeTask(labelEquipe, labelMinuteur, 5, buttonNoterJuge);
         Timer timer = new Timer();
         timer.schedule(task, 0, 1000);
 
@@ -466,6 +467,11 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                 labelMinuteur.setText("Temps restant : ");
 
                                 buttonNoterJuge.setText("Noter");
+                                buttonNoterJuge.addActionListener(new java.awt.event.ActionListener() {
+                                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        buttonNoterJugeActionPerformed(evt);
+                                    }
+                                });
 
                                 labelNote.setText("Note : ");
 
@@ -761,8 +767,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap())))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton3))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton3)
+                                        .addContainerGap())
                                 );
                                 jPanel1Layout.setVerticalGroup(
                                     jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -778,9 +785,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(6, 6, 6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButton3)
-                                        .addContainerGap())
+                                        .addGap(6, 6, 6))
                                 );
 
                                 jTabbedPane2.addTab("Juge arbitre", jPanel1);
@@ -3326,6 +3333,21 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_refreshActionPerformed
+
+    private void buttonNoterJugeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNoterJugeActionPerformed
+        try {
+            // TODO add your handling code here:
+            int curseur = SliderNote.getValue();
+            int id_personne = personne.getId_personne();
+            int id_equipe = equipe.getId_equipe();
+            //System.out.print(id_personne);
+            //System.out.print(id_equipe);
+            note = new note(curseur, id_equipe, id_personne);
+            refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonNoterJugeActionPerformed
 
     /**
      * @param args the command line arguments
