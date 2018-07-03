@@ -3343,8 +3343,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             int id_equipe = equipe.getIdEquipeEncours();
             //System.out.print(id_personne);
             //System.out.print(id_equipe);
-            System.out.println("note : " + curseur + " Equipe ! " + id_equipe + " personne ! " + id_personne
-            );
+            System.out.println("note : " + curseur + " Equipe ! " + id_equipe + " personne ! " + id_personne);
+
             note = new note(curseur, id_equipe, id_personne);
             refresh();
         } catch (SQLException ex) {
