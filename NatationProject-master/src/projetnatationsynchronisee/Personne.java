@@ -92,6 +92,7 @@ public class Personne {
         this.dateNaissance = dateNaissance;
         this.dateCreation = dateCreation;
         try (Statement statement = connexion.createStatement()) {
+            System.out.println( "INSERT INTO personne(nom, prenom, dateCreation, dateDeNaissance) VALUES ('" + nom + "','" + prenom + "','" + dateNaissance + "','" + dateCreation + "')");
             String sql = "INSERT INTO personne(nom, prenom, dateCreation, dateDeNaissance) VALUES ('" + nom + "','" + prenom + "','" + dateNaissance + "','" + dateCreation + "')";
 
             statement.executeUpdate(sql);
@@ -184,7 +185,7 @@ public class Personne {
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation, personne WHERE user_natation.id_personne = personne.id_personne AND login = '" + user_natation_login + "'");
         while (result.next()) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
+         //   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
             this.id_personne = result.getInt("id_personne");
             this.nom = result.getString("nom");
             this.prenom = result.getString("prenom");
@@ -192,6 +193,22 @@ public class Personne {
         }
         statement.close();
         connexion.close();
+
+    }
+    
+    public int setInfosGetDernierId() throws SQLException {
+
+        Connection_Personne();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("select  max(id_personne) id_personne from personne");
+        while (result.next()) {
+         //   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
+            return result.getInt("id_personne");
+        }
+     
+        statement.close();
+        connexion.close();
+           return 0;
 
     }
 

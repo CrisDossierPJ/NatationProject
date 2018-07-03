@@ -218,5 +218,59 @@ public class Club {
         return tabID;
 
     }
+        public String[] getAllDirigeant() throws SQLException {
+        Connection_Club();
+        Statement statement = connexion.createStatement();
+        int taille = 0;
+        ResultSet count = statement.executeQuery("SELECT count(distinct id_personne) nb FROM club  ");
+        while (count.next()) {
+            taille = Integer.parseInt(count.getString("nb"));
+        }
+
+        count.close();
+        int i = 0;
+        ResultSet result = statement.executeQuery("SELECT distinct club.id_personne, nom, prenom FROM club JOIN personne on personne.id_personne = club.id_personne ");
+
+        String tabNomPrenom[] = new String[taille];
+
+        while (result.next()) {
+
+            tabNomPrenom[i] = result.getString("id_personne") + "-" + result.getString("nom") + " " + result.getString("prenom");
+            i++;
+
+        }
+        statement.close();
+        connexion.close();
+        return tabNomPrenom;
+
+    }
+
+    public String[] getIdDirigeant() throws SQLException {
+        Connection_Club();
+        Statement statement = connexion.createStatement();
+
+        int taille = 0;
+        ResultSet count = statement.executeQuery("SELECT count(distinct id_personne) nb FROM club  ");
+        while (count.next()) {
+            taille = Integer.parseInt(count.getString("nb"));
+        }
+
+        count.close();
+        ResultSet result = statement.executeQuery("SELECT distinct club.id_personne, nom, prenom FROM club JOIN personne on personne.id_personne = club.id_personne ");
+        int i = 0;
+
+        String tabID[] = new String[taille];
+
+        while (result.next()) {
+
+            tabID[i] = result.getString("id_personne");
+            i++;
+
+        }
+        statement.close();
+        connexion.close();
+        return tabID;
+
+    }
 
 }

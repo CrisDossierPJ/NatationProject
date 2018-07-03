@@ -26,7 +26,7 @@ public class Equipe {
     String nom_equipe;
     int num_passage;
     double penalite;
-    int Visible;
+    boolean Visible;
     String DateCreation;
     int id_club;
     int id_compet;
@@ -87,7 +87,7 @@ public class Equipe {
         connexion.close();
     }
 
-    public Equipe(String nom_equipe, int num_passage, int penalite, int Visible, String DateCreation, int id_club, int id_compet) throws SQLException {
+    public Equipe(String nom_equipe, int num_passage, double penalite, boolean Visible, String DateCreation, int id_club, int id_compet) throws SQLException {
         Connection_Equipe();
 
         this.nom_equipe = nom_equipe;
@@ -195,7 +195,7 @@ public class Equipe {
     public void setVisible(int Visible, int id_equipe) throws SQLException {
 
         Connection_Equipe();
-        this.Visible = Visible;
+       // this.Visible = Visible;
         String visible = "";
         if (Visible == 0) {
             visible = "false";
