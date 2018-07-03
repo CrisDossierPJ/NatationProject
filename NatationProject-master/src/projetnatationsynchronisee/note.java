@@ -25,6 +25,7 @@ public class note {
     int note;
     int id_equipe;
     int id_personne;
+    int visible;
 
     Connection connexion = null;
     ResultSet resultSet = null;
@@ -69,29 +70,61 @@ public class note {
         // data of the table
         Vector<Vector<Object>> data = new Vector<Vector<Object>>();
         while (rs.next()) {
-            Vector<Object> vector = new Vector<Object>();
-            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                vector.add(rs.getObject(columnIndex));
+            if (rs.getBoolean("visible") == true) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                    vector.add(rs.getObject(columnIndex));
+                }
+                data.add(vector);
             }
-            data.add(vector);
+
         }
         statement.close();
         return new DefaultTableModel(data, columnNames);
 
     }
 
-    public note(int note, int id_equipe, int id_personne) throws SQLException {
+    public note(int note, int id_equipe, int id_personne, int visible) throws SQLException {
         Connection_Note();
         this.note = note;
         this.id_equipe = id_equipe;
         this.id_personne = id_personne;
+        this.visible = visible;
         try (Statement statement = connexion.createStatement()) {
-            String sql = "INSERT INTO note(note, id_equipe, id_personne) VALUES ('" + note + "','" + id_equipe + "','" + id_personne + "')";
+            String sql = "INSERT INTO note(note, id_equipe, id_personne, visible) VALUES ('" + note + "','" + id_equipe + "','" + id_personne + "', 'false')";
 
             statement.executeUpdate(sql);
             statement.close();
         }
 
+        connexion.close();
+
+    }
+
+    public boolean isVisible(int id_equipe) throws SQLException {
+        Connection_Note();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM note WHERE id_equipe = '" + id_equipe + "'");
+        while (result.next()) {
+            return result.getBoolean("visible");
+        }
+
+        return false;
+    }
+
+    public void setVisible(int visible, int id_equipe) throws SQLException {
+
+        Connection_Note();
+        this.visible = visible;
+        String String_visible = "";
+        if (visible == 0) {
+            String_visible = "false";
+        } else {
+            String_visible = "true";
+        }
+        System.out.println("UPDATE note SET Visible = '" + String_visible + "' WHERE id_equipe = '" + id_equipe + "'");
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE note SET Visible = '" + String_visible + "' WHERE id_equipe = '" + id_equipe + "'");
+        stmt.executeUpdate();
         connexion.close();
 
     }
