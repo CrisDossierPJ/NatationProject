@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetnatationsynchronisee;
+package NatationSynchronisee;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -3500,6 +3500,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             String id_String = boxClubForLanc.getSelectedItem().toString();
             id_String = id_String.substring(0, 1);
             int id_equipe = Integer.parseInt(id_String);
+            equipe.setAllNotVisible();
             equipe.setVisible(1, id_equipe);
         } catch (SQLException ex) {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
@@ -3510,7 +3511,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         // TODO add your handling code here:
         //  int note, int id_personne, int id_equipe
         try {
-
+            
             note.setNote(Integer.parseInt(textJugeNote1.getText()), equipe.getIdJuge(1), equipe.getIdEquipe(1));
             note.setNote(Integer.parseInt(textJugeNote2.getText()), equipe.getIdJuge(2), equipe.getIdEquipe(2));
             note.setNote(Integer.parseInt(textJugeNote3.getText()), equipe.getIdJuge(3), equipe.getIdEquipe(3));

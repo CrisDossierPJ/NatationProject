@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetnatationsynchronisee;
+package NatationSynchronisee;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -195,7 +195,7 @@ public class Equipe {
     public void setVisible(int Visible, int id_equipe) throws SQLException {
 
         Connection_Equipe();
-       // this.Visible = Visible;
+        // this.Visible = Visible;
         String visible = "";
         if (Visible == 0) {
             visible = "false";
@@ -376,6 +376,13 @@ public class Equipe {
         statement.close();
         connexion.close();
         return "Aucune equipe en cours";
+    }
+
+    public void setAllNotVisible() throws SQLException {
+        Connection_Equipe();
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE equipe SET Visible = 'false' ");
+        stmt.executeUpdate();
+        connexion.close();
     }
 
     public int getIdEquipeEncours() throws SQLException {
