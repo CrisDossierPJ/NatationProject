@@ -26,6 +26,7 @@ public class Competition {
     int id_compet;
     String Titre;
     String Date_Compet;
+    String fin_Date_Compet;
     String Lieu_Compet;
 
     Connection connexion = null;
@@ -84,16 +85,17 @@ public class Competition {
         connexion.close();
     }
 
-    public Competition(String Titre, String Date_Compet, String Lieu_Compet) throws SQLException {
+    public Competition(String Titre, String Date_Compet, String fin_Date_Compet, String Lieu_Compet) throws SQLException {
         Connection_Competition();
         this.Titre = Titre;
         this.Date_Compet = Date_Compet;
+        this.fin_Date_Compet = fin_Date_Compet;
         this.Lieu_Compet = Lieu_Compet;
 
         try (Statement statement = connexion.createStatement()) {
 
-            statement.executeUpdate("INSERT INTO competition(Titre, Date_Compet, Lieu_Compet) VALUES ('" + Titre + "','"
-                    + "" + Date_Compet + "','" + Lieu_Compet + "')");
+            statement.executeUpdate("INSERT INTO competition(Titre, Date_Compet,fin_Date_Compet,Lieu_Compet) VALUES ('" + Titre + "','"
+                    + "" + Date_Compet + "','" + fin_Date_Compet + "','" + Lieu_Compet + "')");
             statement.close();
         }
         connexion.close();
@@ -145,13 +147,36 @@ public class Competition {
 
     }
 
+    public String getfin_Date_Compet(int id_compet) throws SQLException {
+        Connection_Competition();
+        Statement statement = connexion.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM competition WHERE id_compet = '" + id_compet + "'");
+        String date_Compet_Return = "";
+        while (result.next()) {
+            date_Compet_Return = result.getString("fin_Date_Compet");
+        }
+        statement.close();
+        connexion.close();
+        return date_Compet_Return;
+    }
+
+    public void setfin_Date_Compet(String fin_Date_Compet, int id_compet) throws SQLException {
+
+        Connection_Competition();
+        this.fin_Date_Compet = fin_Date_Compet;
+        PreparedStatement stmt = connexion.prepareStatement("UPDATE competition SET fin_Date_Compet = '" + fin_Date_Compet + "' WHERE id_compet = '" + id_compet + "'");
+        stmt.executeUpdate();
+        connexion.close();
+
+    }
+
     public String getLieu_Compet(int id_compet) throws SQLException {
         Connection_Competition();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM competition WHERE id_compet = '" + id_compet + "'");
         String lieu_Return = "";
         while (result.next()) {
-            lieu_Return =  result.getString("Lieu_Compet");
+            lieu_Return = result.getString("Lieu_Compet");
         }
         statement.close();
         connexion.close();

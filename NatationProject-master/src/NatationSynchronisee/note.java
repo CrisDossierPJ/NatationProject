@@ -62,8 +62,9 @@ public class note {
         ResultSet rs = statement.executeQuery("select n.note, e.nom_equipe, co.titre, n.visible from note n\n"
                 + "join equipe e on n.id_equipe = e.id_equipe\n"
                 + "join competition co on e.id_compet = co.id_compet\n"
-                + "WHERE e.id_equipe = " + equipe.getIdEquipeEncours());
-
+                + "WHERE e.id_equipe = " + equipe.getIdEquipeEncours() + ""
+                + "AND co.date_compet <= current_date "
+                + "AND current_date <= co.fin_date_compet");
         ResultSetMetaData metaData = rs.getMetaData();
 
         // names of columns

@@ -209,19 +209,26 @@ public class User {
 
     public boolean isJugeArbAuth(String user_natation_login) throws SQLException {
         Connection_User();
+        boolean vraie = false;
+        int id_personne = 0;
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + user_natation_login + "'");
         boolean juge_Arb_Return = false;
         while (result.next()) {
             if (result.getBoolean("estcreateurCompet") == false && result.getBoolean("estadmin") == false) {
-                ResultSet resultJuge = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + result.getInt("id_personne") + "'");
-                while (resultJuge.next()) {
-                    juge_Arb_Return = resultJuge.getBoolean("estArbitre");
-                }
-
+                id_personne = result.getInt("id_personne");
+                vraie = true;
+                break;
             }
 
         }
+        if (vraie == true) {
+            ResultSet resultJuge = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + id_personne + "'");
+            while (resultJuge.next()) {
+                juge_Arb_Return = resultJuge.getBoolean("estArbitre");
+            }
+        }
+
         statement.close();
         connexion.close();
         return juge_Arb_Return;

@@ -296,14 +296,20 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         int taille = 0;
-        ResultSet count = statement.executeQuery("SELECT  count(*) nb FROM equipe ");
+        ResultSet count = statement.executeQuery("SELECT  count(*) nb from equipe e \n"
+                + "join competition co on e.id_compet = co.id_compet\n"
+                + "Where co.date_compet <= current_date\n"
+                + "AND current_date <= co.fin_date_compet");
         while (count.next()) {
             taille = Integer.parseInt(count.getString("nb"));
         }
 
         count.close();
         int i = 0;
-        ResultSet result = statement.executeQuery("SELECT * FROM equipe ");
+        ResultSet result = statement.executeQuery("Select * from equipe e \n"
+                + "join competition co on e.id_compet = co.id_compet\n"
+                + "Where co.date_compet <= current_date\n"
+                + "AND current_date <= co.fin_date_compet");
 
         String tabNomPrenom[] = new String[taille];
 
@@ -324,13 +330,19 @@ public class Equipe {
         Statement statement = connexion.createStatement();
 
         int taille = 0;
-        ResultSet count = statement.executeQuery("SELECT  count(*) nb FROM equipe ");
+        ResultSet count = statement.executeQuery("SELECT  count(*) nb from equipe e \n"
+                + "join competition co on e.id_compet = co.id_compet\n"
+                + "Where co.date_compet <= current_date\n"
+                + "AND current_date <= co.fin_date_compet");
         while (count.next()) {
             taille = Integer.parseInt(count.getString("nb"));
         }
 
         count.close();
-        ResultSet result = statement.executeQuery("SELECT * FROM equipe ");
+        ResultSet result = statement.executeQuery("Select * from equipe e \n"
+                + "join competition co on e.id_compet = co.id_compet\n"
+                + "Where co.date_compet <= current_date\n"
+                + "AND current_date <= co.fin_date_compet");
         int i = 0;
 
         String tabID[] = new String[taille];
