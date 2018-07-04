@@ -187,6 +187,10 @@ public class note {
                 + "join juge on juge.id_personne= note.id_personne\n"
                 + "join equipe on equipe.id_equipe = note.id_equipe\n"
                 + "WHERE rang = " + rang + " and equipe.visible = true;");
+        System.out.println("select * from note\n"
+                + "join juge on juge.id_personne= note.id_personne\n"
+                + "join equipe on equipe.id_equipe = note.id_equipe\n"
+                + "WHERE rang = " + rang + " and equipe.visible = true;");
         while (result.next()) {
             return result.getInt("note");
         }
