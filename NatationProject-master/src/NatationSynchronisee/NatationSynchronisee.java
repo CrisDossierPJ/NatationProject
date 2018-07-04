@@ -412,8 +412,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                             jLabel67 = new javax.swing.JLabel();
                                             jLabel68 = new javax.swing.JLabel();
                                             jLabel70 = new javax.swing.JLabel();
-                                            jButton5 = new javax.swing.JButton();
-                                            jButton7 = new javax.swing.JButton();
+                                            RemoveNageuseEquipe = new javax.swing.JButton();
+                                            addNageuseEquipe = new javax.swing.JButton();
                                             jLabel71 = new javax.swing.JLabel();
                                             jScrollPane8 = new javax.swing.JScrollPane();
                                             jTableNageuse = new javax.swing.JTable();
@@ -2095,17 +2095,17 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
             jLabel70.setText("Ajouter nageuse à équipe");
 
-            jButton5.setText("Enlever Nageuse");
-            jButton5.addActionListener(new java.awt.event.ActionListener() {
+            RemoveNageuseEquipe.setText("Enlever Nageuse");
+            RemoveNageuseEquipe.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton5ActionPerformed(evt);
+                    RemoveNageuseEquipeActionPerformed(evt);
                 }
             });
 
-            jButton7.setText("Ajouter nageuse");
-            jButton7.addActionListener(new java.awt.event.ActionListener() {
+            addNageuseEquipe.setText("Ajouter nageuse");
+            addNageuseEquipe.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton7ActionPerformed(evt);
+                    addNageuseEquipeActionPerformed(evt);
                 }
             });
 
@@ -2167,9 +2167,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                         .addComponent(boxNaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                     .addGap(67, 67, 67)
-                                    .addComponent(jButton7)
+                                    .addComponent(addNageuseEquipe)
                                     .addGap(51, 51, 51)
-                                    .addComponent(jButton5)))
+                                    .addComponent(RemoveNageuseEquipe)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2198,8 +2198,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                     .addComponent(jLabel70)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton5)
-                        .addComponent(jButton7))
+                        .addComponent(RemoveNageuseEquipe)
+                        .addComponent(addNageuseEquipe))
                     .addGap(46, 46, 46))
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(42, 42, 42)
@@ -2999,11 +2999,11 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                     }
                 }
-                System.out.println("JE MAPELLE I " + index);
+                //System.out.println("JE MAPELLE I " + index);
 
                 listPersonne.setSelectedIndex(index);
 
-                System.out.println(listPersonne.getSelectedIndex());
+                //System.out.println(listPersonne.getSelectedIndex());
                 if (utilisateur.isEstAdmin(id_personne)) {
                     radioButAdm.setSelected(true);
                 } else if (utilisateur.isEstCreateurCompet(id_personne)) {
@@ -3070,6 +3070,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             }
 
             utilisateur.setLogin(textLogin.getText(), Integer.parseInt(allIdPersonne[index]));
+            System.out.println("MDP !!" + textPass.getText());
             utilisateur.setPasswd(textPass.getText(), Integer.parseInt(allIdPersonne[index]));
             utilisateur.setEstAdmin(estadmin, Integer.parseInt(allIdPersonne[index]));
             utilisateur.setEstCreateurCompet(estCreateurCompet, Integer.parseInt(allIdPersonne[index]));
@@ -3150,13 +3151,31 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_listePersonneForNageuseActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void RemoveNageuseEquipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveNageuseEquipeActionPerformed
+        try {
+            // TODO add your handling code here:
+            Compose remove = new Compose();
+            String CompetNaj = boxNaj.getSelectedItem().toString();
+            int id_Naj = Integer.parseInt(CompetNaj.substring(0, 1));
+            remove.deleteCompose(id_Naj);
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_RemoveNageuseEquipeActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void addNageuseEquipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNageuseEquipeActionPerformed
+        try {
+            // TODO add your handling code here:
+            String CompetNaj = boxNaj.getSelectedItem().toString();
+            int id_Naj = Integer.parseInt(CompetNaj.substring(0, 1));
+            String CompetEquipe = boxEquipeNaj.getSelectedItem().toString();
+            int id_Equipe = Integer.parseInt(CompetEquipe.substring(0, 1));
+            Compose compose = new Compose(id_Naj, id_Equipe);
+        } catch (SQLException ex) {
+            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_addNageuseEquipeActionPerformed
 
     private void ButAddNagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButAddNagActionPerformed
         try {
@@ -3420,10 +3439,12 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
     private void jTableNageuseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNageuseMouseClicked
         try {
+            Compose compose = new Compose();
             int viewRow = jTableNageuse.getSelectedRow();
             int modelRow = jTableNageuse.convertRowIndexToModel(viewRow);
             int indexPers = 0;
             String tabIdPers[] = personne.getIdPersonne();
+
             for (int i = 0; i < tabIdPers.length; i++) {
 
                 if (tabIdPers[i].equals((jTableNageuse.getModel().getValueAt(modelRow, jTableNageuse.getSelectedColumn())).toString())) {
@@ -3435,13 +3456,25 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             }
             String tabIdNag[] = nageuse.getIdNageuse();
             int indexnag = 0;
+            int id_equipe = 0;
             for (int i = 0; i < tabIdNag.length; i++) {
 
                 if (tabIdNag[i].equals((jTableNageuse.getModel().getValueAt(modelRow, jTableNageuse.getSelectedColumn())).toString())) {
                     indexnag = i;
+                    id_equipe = compose.getId_equipe(Integer.parseInt(tabIdNag[i]));
+                    // System.out.println(compose.getId_equipe(Integer.parseInt(tabIdNag[i])));
                     break;
 
                 }
+            }
+
+            for (int i = 0; i < boxEquipeNaj.getItemCount(); i++) {
+
+                if (id_equipe == Integer.parseInt(boxEquipeNaj.getItemAt(i).substring(0, 1))) {
+                    boxEquipeNaj.setSelectedIndex(i);
+                    break;
+                }
+
             }
 
             listePersonneForNageuse.setSelectedIndex(indexPers);
@@ -3718,8 +3751,10 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JButton CreerClub;
     private javax.swing.JButton CreerCompet;
     private javax.swing.JButton CreerNageuse;
+    private javax.swing.JButton RemoveNageuseEquipe;
     private javax.swing.JSlider SliderNote;
     private javax.swing.JButton StopResult;
+    private javax.swing.JButton addNageuseEquipe;
     private javax.swing.JComboBox<String> boxClubForAffichNote;
     private javax.swing.JComboBox<String> boxClubForEquipe;
     private javax.swing.JComboBox<String> boxClubForEquipe1;
@@ -3751,9 +3786,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JButton deletePersonne;
     private javax.swing.JButton deleteUser;
     private javax.swing.JTextField fieldNomClub;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonPenalite;
     private javax.swing.JComboBox<String> jComboBoxDirigeant;
     private javax.swing.JLabel jLabel1;

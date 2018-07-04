@@ -92,7 +92,7 @@ public class Personne {
         this.dateNaissance = dateNaissance;
         this.dateCreation = dateCreation;
         try (Statement statement = connexion.createStatement()) {
-            System.out.println( "INSERT INTO personne(nom, prenom, dateCreation, dateDeNaissance) VALUES ('" + nom + "','" + prenom + "','" + dateNaissance + "','" + dateCreation + "')");
+            System.out.println("INSERT INTO personne(nom, prenom, dateCreation, dateDeNaissance) VALUES ('" + nom + "','" + prenom + "','" + dateNaissance + "','" + dateCreation + "')");
             String sql = "INSERT INTO personne(nom, prenom, dateCreation, dateDeNaissance) VALUES ('" + nom + "','" + prenom + "','" + dateNaissance + "','" + dateCreation + "')";
 
             statement.executeUpdate(sql);
@@ -125,12 +125,13 @@ public class Personne {
         Connection_Personne();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM personne WHERE id_personne = '" + id_personne + "'");
+        String nom_Return = "";
         while (result.next()) {
-            return result.getString("nom");
+            nom_Return = result.getString("nom");
         }
         statement.close();
         connexion.close();
-        return "Id_personne non existant";
+        return nom_Return;
     }
 
     public void setNom(String nom, int id_personne) throws SQLException {
@@ -148,12 +149,13 @@ public class Personne {
         Connection_Personne();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM personne WHERE id_personne = '" + id_personne + "'");
+        String prenom_Return = "";
         while (result.next()) {
-            return result.getString("prenom");
+            prenom_Return = result.getString("prenom");
         }
         statement.close();
         connexion.close();
-        return "Id_personne non existant";
+        return prenom_Return;
     }
 
     public void setPrenom(String prenom, int id_personne) throws SQLException {
@@ -170,12 +172,13 @@ public class Personne {
 
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM personne WHERE id_personne = '" + id_personne + "'");
+        String dateNaissance_return = "";
         while (result.next()) {
-            return result.getString("datedenaissance");
+            dateNaissance_return = result.getString("datedenaissance");
         }
         statement.close();
         connexion.close();
-        return "";
+        return dateNaissance_return;
 
     }
 
@@ -185,7 +188,7 @@ public class Personne {
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation, personne WHERE user_natation.id_personne = personne.id_personne AND login = '" + user_natation_login + "'");
         while (result.next()) {
-         //   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
+            //   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
             this.id_personne = result.getInt("id_personne");
             this.nom = result.getString("nom");
             this.prenom = result.getString("prenom");
@@ -195,20 +198,21 @@ public class Personne {
         connexion.close();
 
     }
-    
+
     public int setInfosGetDernierId() throws SQLException {
 
         Connection_Personne();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("select  max(id_personne) id_personne from personne");
+        int dernier_Id_Return = 0;
         while (result.next()) {
-         //   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
-            return result.getInt("id_personne");
+            //   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + result.getInt("id_personne") + result.getString("nom"));
+            dernier_Id_Return = result.getInt("id_personne");
         }
-     
+
         statement.close();
         connexion.close();
-           return 0;
+        return dernier_Id_Return;
 
     }
 
@@ -226,12 +230,13 @@ public class Personne {
 
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM personne WHERE id_personne = '" + id_personne + "'");
+        String date_Creation_Return = "";
         while (result.next()) {
-            return result.getString("datecreation");
+            date_Creation_Return = result.getString("datecreation");
         }
         statement.close();
         connexion.close();
-        return "";
+        return date_Creation_Return;
 
     }
 

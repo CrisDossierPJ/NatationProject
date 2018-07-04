@@ -140,12 +140,13 @@ public class note {
         Connection_Note();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM note WHERE id_equipe = '" + id_equipe + "'");
+        int note_Return = 0;
         while (result.next()) {
-            return result.getInt("note");
+            note_Return = result.getInt("note");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return note_Return;
     }
 
     public void setNote(int note, int id_personne, int id_equipe) throws SQLException {
@@ -169,12 +170,13 @@ public class note {
         Connection_Note();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM note WHERE id_equipe = '" + id_equipe + "'");
+        int id_personne_Return = 0;
         while (result.next()) {
-            return result.getInt("id_equipe");
+            id_personne_Return = result.getInt("id_equipe");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return id_personne_Return;
     }
 
     public void setId_personne(int id_personne, int id_equipe) throws SQLException {
@@ -194,16 +196,14 @@ public class note {
                 + "join juge on juge.id_personne= note.id_personne\n"
                 + "join equipe on equipe.id_equipe = note.id_equipe\n"
                 + "WHERE rang = " + rang + " and equipe.visible = true;");
-        System.out.println("select * from note\n"
-                + "join juge on juge.id_personne= note.id_personne\n"
-                + "join equipe on equipe.id_equipe = note.id_equipe\n"
-                + "WHERE rang = " + rang + " and equipe.visible = true;");
+
+        int note_Return = 0;
         while (result.next()) {
-            return result.getInt("note");
+            note_Return = result.getInt("note");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return note_Return;
 
     }
 

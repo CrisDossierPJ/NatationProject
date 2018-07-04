@@ -92,7 +92,7 @@ public class Juge {
         try (Statement statement = connexion.createStatement()) {
 
             statement.executeUpdate("INSERT INTO juge(Rang, estArbitre, id_personne) VALUES ('" + Rang + "','" + estArbitre + "','" + id_personne + "')");
-            System.out.println("INSERT INTO juge(Rang, estArbitre, id_personne) VALUES ('" + Rang + "','" + estArbitre + "','" + id_personne + "')");
+            // System.out.println("INSERT INTO juge(Rang, estArbitre, id_personne) VALUES ('" + Rang + "','" + estArbitre + "','" + id_personne + "')");
             statement.close();
         }
         connexion.close();
@@ -102,12 +102,13 @@ public class Juge {
         Connection_Juge();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + id_personne + "'");
+        int rang_Return = 0;
         while (result.next()) {
-            return result.getInt("Rang");
+            rang_Return = result.getInt("Rang");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return rang_Return;
 
     }
 
@@ -125,12 +126,13 @@ public class Juge {
         Connection_Juge();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + id_personne + "'");
+        boolean est_Arbitre_Return = false;
         while (result.next()) {
-            return result.getBoolean("estArbitre");
+            est_Arbitre_Return = result.getBoolean("estArbitre");
         }
         statement.close();
         connexion.close();
-        return false;
+        return est_Arbitre_Return;
 
     }
 
@@ -161,7 +163,5 @@ public class Juge {
         stmt.close();
         connexion.close();
     }
-
-    
 
 }

@@ -122,11 +122,13 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM equipe WHERE id_equipe = '" + id_equipe + "'");
+        String nom_Equipe_Return = "";
         while (result.next()) {
-            return result.getString("nom_equipe");
+            nom_Equipe_Return = result.getString("nom_equipe");
         }
-
-        return "";
+        statement.close();
+        connexion.close();
+        return nom_Equipe_Return;
     }
 
     public void setNom_equipe(String nom_equipe, int id_equipe) throws SQLException {
@@ -143,11 +145,13 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM equipe WHERE id_equipe = '" + id_equipe + "'");
+        int num_Passsage_Return = 0;
         while (result.next()) {
-            return result.getInt("num_passage");
+            num_Passsage_Return = result.getInt("num_passage");
         }
-
-        return 0;
+        statement.close();
+        connexion.close();
+        return num_Passsage_Return;
     }
 
     public void setNum_passage(int num_passage, int id_equipe) throws SQLException {
@@ -164,11 +168,13 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM equipe WHERE id_equipe = '" + id_equipe + "'");
+        int penalite_Return = 0;
         while (result.next()) {
-            return result.getInt("penalite");
+            penalite_Return = result.getInt("penalite");
         }
-
-        return 0;
+        statement.close();
+        connexion.close();
+        return penalite_Return;
     }
 
     public void setPenalite(double penalite, int id_equipe) throws SQLException {
@@ -185,11 +191,13 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM equipe WHERE id_equipe = '" + id_equipe + "'");
+        boolean visible_return = false;
         while (result.next()) {
-            return result.getBoolean("visible");
+            visible_return = result.getBoolean("visible");
         }
-
-        return false;
+        statement.close();
+        connexion.close();
+        return visible_return;
     }
 
     public void setVisible(int Visible, int id_equipe) throws SQLException {
@@ -212,11 +220,13 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM equipe WHERE id_equipe = '" + id_equipe + "'");
+        String date_Creation_Return = "";
         while (result.next()) {
-            return result.getString("DateCreation");
+            date_Creation_Return = result.getString("DateCreation");
         }
-
-        return "";
+        statement.close();
+        connexion.close();
+        return date_Creation_Return;
     }
 
     public void setDateCreation(String DateCreation, int id_equipe) throws SQLException {
@@ -233,11 +243,13 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM equipe WHERE id_equipe = '" + id_equipe + "'");
+        int id_Club_Return = 0;
         while (result.next()) {
-            return result.getInt("id_club");
+            id_Club_Return = result.getInt("id_club");
         }
-
-        return 0;
+        statement.close();
+        connexion.close();
+        return id_Club_Return;
     }
 
     public void setId_club(int id_club, int id_equipe) throws SQLException {
@@ -254,11 +266,12 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM equipe WHERE id_equipe = '" + id_equipe + "'");
+        int id_Compet_Return = 0;
         while (result.next()) {
-            return result.getInt("id_compet");
+            id_Compet_Return = result.getInt("id_compet");
         }
 
-        return 0;
+        return id_Compet_Return;
     }
 
     public void setId_compet(int id_compet, int id_equipe) throws SQLException {
@@ -341,12 +354,13 @@ public class Equipe {
                 + "join juge on juge.id_personne= note.id_personne\n"
                 + "join equipe on equipe.id_equipe = note.id_equipe\n"
                 + "WHERE rang = " + rang + " and equipe.visible = true;");
+        int id_Equipe_return = 0;
         while (result.next()) {
-            return result.getInt("id_equipe");
+            id_Equipe_return = result.getInt("id_equipe");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return id_Equipe_return;
 
     }
 
@@ -357,12 +371,13 @@ public class Equipe {
                 + "join juge on juge.id_personne= note.id_personne\n"
                 + "join equipe on equipe.id_equipe = note.id_equipe\n"
                 + "WHERE rang = " + rang + " and equipe.visible = true;");
+        int id_Juge_return = 0;
         while (result.next()) {
-            return result.getInt("id_personne");
+            id_Juge_return = result.getInt("id_personne");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return id_Juge_return;
 
     }
 
@@ -370,12 +385,13 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("select * from equipe Where visible = true");
+        String nom_equipe_Return = "";
         while (result.next()) {
-            return result.getString("nom_equipe");
+            nom_equipe_Return = result.getString("nom_equipe");
         }
         statement.close();
         connexion.close();
-        return "Aucune equipe en cours";
+        return nom_equipe_Return;
     }
 
     public void setAllNotVisible() throws SQLException {
@@ -389,11 +405,12 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("select * from equipe Where visible = true");
+        int id_Equipe_Cours_Return = 0;
         while (result.next()) {
-            return result.getInt("id_equipe");
+            id_Equipe_Cours_Return = result.getInt("id_equipe");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return id_Equipe_Cours_Return;
     }
 }

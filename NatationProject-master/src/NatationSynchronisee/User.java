@@ -129,12 +129,13 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE id_personne = '" + id_personne + "'");
+        String login_Return = "";
         while (result.next()) {
-            return result.getString("login");
+            login_Return = result.getString("login");
         }
         statement.close();
         connexion.close();
-        return "Id_personne non existant";
+        return login_Return;
     }
 
     public void setLogin(String login, int id_personne) throws SQLException {
@@ -155,8 +156,9 @@ public class User {
 
     public void setPasswd(String passwd, int id_personne) throws SQLException {
         Connection_User();
-        this.passwd = passwd;
+        //this.passwd = passwd;
         PreparedStatement stmt = connexion.prepareStatement("UPDATE user_natation SET passwd = '" + passwd + "' WHERE id_personne = '" + id_personne + "'");
+        System.out.println(stmt);
         stmt.executeUpdate();
         connexion.close();
         stmt.close();
@@ -166,12 +168,13 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE id_personne = '" + id_personne + "'");
+        boolean est_Admin_Return = false;
         while (result.next()) {
-            return result.getBoolean("estAdmin");
+            est_Admin_Return = result.getBoolean("estAdmin");
         }
         statement.close();
         connexion.close();
-        return false;
+        return est_Admin_Return;
 
     }
 
@@ -179,12 +182,13 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + user_natation_login + "'");
+        boolean est_Admin_Return = false;
         while (result.next()) {
-            return result.getBoolean("estAdmin");
+            est_Admin_Return = result.getBoolean("estAdmin");
         }
         statement.close();
         connexion.close();
-        return false;
+        return est_Admin_Return;
 
     }
 
@@ -192,13 +196,14 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + user_natation_login + "'");
+        boolean createur_compet_Return = false;
         while (result.next()) {
             id_personne = result.getInt("id_personne");
-            return result.getBoolean("estcreateurCompet");
+            createur_compet_Return = result.getBoolean("estcreateurCompet");
         }
         statement.close();
         connexion.close();
-        return false;
+        return createur_compet_Return;
 
     }
 
@@ -206,11 +211,12 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE login = '" + user_natation_login + "'");
+        boolean juge_Arb_Return = false;
         while (result.next()) {
             if (result.getBoolean("estcreateurCompet") == false && result.getBoolean("estadmin") == false) {
                 ResultSet resultJuge = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + result.getInt("id_personne") + "'");
                 while (resultJuge.next()) {
-                    return resultJuge.getBoolean("estArbitre");
+                    juge_Arb_Return = resultJuge.getBoolean("estArbitre");
                 }
 
             }
@@ -218,27 +224,24 @@ public class User {
         }
         statement.close();
         connexion.close();
-        return false;
+        return juge_Arb_Return;
 
     }
 
     public boolean isJugeArb(int id_personne) throws SQLException {
         Connection_User();
         Statement statement = connexion.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE id_personne = '" + id_personne + "'");
-        while (result.next()) {
-            if (result.getBoolean("estcreateurCompet") == false && result.getBoolean("estadmin") == false) {
-                ResultSet resultJuge = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + result.getInt("id_personne") + "'");
-                while (resultJuge.next()) {
-                    return resultJuge.getBoolean("estarbitre");
-                }
+        ResultSet result = statement.executeQuery("SELECT * FROM juge WHERE id_personne = '" + id_personne + "'");
 
-            }
+        boolean juge_Arb_Return = false;
+        while (result.next()) {
+
+            juge_Arb_Return = result.getBoolean("estarbitre");
 
         }
         statement.close();
         connexion.close();
-        return false;
+        return juge_Arb_Return;
 
     }
 
@@ -255,12 +258,13 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM user_natation WHERE id_personne = '" + id_personne + "'");
+        boolean createur_Compet_Return = false;
         while (result.next()) {
-            return result.getBoolean("estCreateurCompet");
+            createur_Compet_Return = result.getBoolean("estCreateurCompet");
         }
         statement.close();
         connexion.close();
-        return false;
+        return createur_Compet_Return;
     }
 
     public void setEstCreateurCompet(int estCreateurCompet, int id_personne) throws SQLException {
@@ -288,11 +292,12 @@ public class User {
         Connection_User();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("select * from equipe Where visible = true");
+        int id_Equipe_Return = 0;
         while (result.next()) {
-            return result.getInt("id_equipe");
+            id_Equipe_Return = result.getInt("id_equipe");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return id_Equipe_Return;
     }
 }

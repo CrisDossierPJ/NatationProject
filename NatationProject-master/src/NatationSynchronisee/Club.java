@@ -38,7 +38,7 @@ public class Club {
 
     public void Connection_Club() {
         try {
-           // Class.forName("com.mysql.jdbc.Driver");
+            // Class.forName("com.mysql.jdbc.Driver");
             Class.forName("org.postgresql.Driver");
 
             connexion = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + nomBdd, identifiant, pass);
@@ -91,6 +91,8 @@ public class Club {
         try (Statement statement = connexion.createStatement()) {
 
             statement.executeUpdate("INSERT INTO club(nom_club, id_personne, dateCreation) VALUES ('" + nom_club + "','" + id_personne + "','" + dateCreation + "')");
+            statement.close();
+
         }
         connexion.close();
     }
@@ -99,11 +101,13 @@ public class Club {
         Connection_Club();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM club WHERE id_club = '" + id_club + "'");
+        String date_Creation_Return = "";
         while (result.next()) {
-            return result.getString("dateCreation");
+            date_Creation_Return = result.getString("dateCreation");
         }
+        statement.close();
         connexion.close();
-        return "";
+        return date_Creation_Return;
     }
 
     public void setDate_Creation_Club(String dateCreation, int id_club) throws SQLException {
@@ -120,11 +124,13 @@ public class Club {
         Connection_Club();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM club WHERE id_club = '" + id_club + "'");
+        String nom_Return = "";
         while (result.next()) {
-            return result.getString("nom_club");
+            nom_Return = result.getString("nom_club");
         }
+        statement.close();
         connexion.close();
-        return "";
+        return nom_Return;
     }
 
     public void setNom_club(String nom_club, int id_club) throws SQLException {
@@ -141,10 +147,13 @@ public class Club {
         Connection_Club();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM club WHERE id_club = '" + id_club + "'");
+        int id_Return = 0;
         while (result.next()) {
-            return result.getInt("id_personne");
+            id_Return = result.getInt("id_personne");
         }
-        return 0;
+        statement.close();
+        connexion.close();
+        return id_Return;
     }
 
     public void setId_personne(int id_personne, int id_club) throws SQLException {
@@ -218,7 +227,8 @@ public class Club {
         return tabID;
 
     }
-        public String[] getAllDirigeant() throws SQLException {
+
+    public String[] getAllDirigeant() throws SQLException {
         Connection_Club();
         Statement statement = connexion.createStatement();
         int taille = 0;

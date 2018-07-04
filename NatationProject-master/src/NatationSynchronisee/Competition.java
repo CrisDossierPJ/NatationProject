@@ -12,10 +12,10 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -34,9 +34,9 @@ public class Competition {
     String nomBdd = bundle.getString("bdd.name");
     String identifiant = bundle.getString("bdd.login");
     String pass = bundle.getString("bdd.password");
-     String host = bundle.getString("bdd.hostname");
+    String host = bundle.getString("bdd.hostname");
     String port = bundle.getString("bdd.port");
-    
+
     public DefaultTableModel buildTableModelCompetition() throws SQLException {
         Connection_Competition();
         Statement statement = connexion.createStatement();
@@ -67,7 +67,7 @@ public class Competition {
 
     public void Connection_Competition() {
         try {
-          // Class.forName("com.mysql.jdbc.Driver");
+            // Class.forName("com.mysql.jdbc.Driver");
             Class.forName("org.postgresql.Driver");
 
             connexion = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + nomBdd, identifiant, pass);
@@ -85,7 +85,7 @@ public class Competition {
     }
 
     public Competition(String Titre, String Date_Compet, String Lieu_Compet) throws SQLException {
-Connection_Competition();
+        Connection_Competition();
         this.Titre = Titre;
         this.Date_Compet = Date_Compet;
         this.Lieu_Compet = Lieu_Compet;
@@ -94,6 +94,7 @@ Connection_Competition();
 
             statement.executeUpdate("INSERT INTO competition(Titre, Date_Compet, Lieu_Compet) VALUES ('" + Titre + "','"
                     + "" + Date_Compet + "','" + Lieu_Compet + "')");
+            statement.close();
         }
         connexion.close();
     }
@@ -102,11 +103,13 @@ Connection_Competition();
         Connection_Competition();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM competition WHERE id_compet = '" + id_compet + "'");
+        String titre_return = "";
         while (result.next()) {
-            return result.getString("Titre");
+            titre_return = result.getString("Titre");
         }
-
-        return "Id_personne non existant";
+        statement.close();
+        connexion.close();
+        return titre_return;
     }
 
     public void setTitre(String Titre, int id_compet) throws SQLException {
@@ -114,7 +117,7 @@ Connection_Competition();
         Connection_Competition();
         this.Titre = Titre;
         PreparedStatement stmt = connexion.prepareStatement("UPDATE competition SET Titre = '" + Titre + "' WHERE id_compet = '" + id_compet + "'");
-         stmt.executeUpdate();
+        stmt.executeUpdate();
         connexion.close();
 
     }
@@ -123,10 +126,13 @@ Connection_Competition();
         Connection_Competition();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM competition WHERE id_compet = '" + id_compet + "'");
+        String date_Compet_Return = "";
         while (result.next()) {
-            return result.getString("Date_Compet");
+            date_Compet_Return = result.getString("Date_Compet");
         }
-        return "";
+        statement.close();
+        connexion.close();
+        return date_Compet_Return;
     }
 
     public void setDate_Compet(String Date_Compet, int id_compet) throws SQLException {
@@ -134,7 +140,7 @@ Connection_Competition();
         Connection_Competition();
         this.Date_Compet = Date_Compet;
         PreparedStatement stmt = connexion.prepareStatement("UPDATE competition SET Date_Compet = '" + Date_Compet + "' WHERE id_compet = '" + id_compet + "'");
-         stmt.executeUpdate();
+        stmt.executeUpdate();
         connexion.close();
 
     }
@@ -143,10 +149,13 @@ Connection_Competition();
         Connection_Competition();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM competition WHERE id_compet = '" + id_compet + "'");
+        String lieu_Return = "";
         while (result.next()) {
-            return result.getString("Lieu_Compet");
+            lieu_Return =  result.getString("Lieu_Compet");
         }
-        return "";
+        statement.close();
+        connexion.close();
+        return lieu_Return;
     }
 
     public void setLieu_Compet(String Lieu_Compet, int id_compet) throws SQLException {
@@ -154,19 +163,20 @@ Connection_Competition();
         Connection_Competition();
         this.Lieu_Compet = Lieu_Compet;
         PreparedStatement stmt = connexion.prepareStatement("UPDATE competition SET Lieu_Compet = '" + Lieu_Compet + "' WHERE id_compet = '" + id_compet + "'");
-         stmt.executeUpdate();
+        stmt.executeUpdate();
         connexion.close();
 
     }
-    public void deleteCompet(int id_compet)throws SQLException {
+
+    public void deleteCompet(int id_compet) throws SQLException {
         Connection_Competition();
 
         PreparedStatement stmt = connexion.prepareStatement("DELETE FROM competition WHERE id_compet = '" + id_compet + "'");
-         stmt.executeUpdate();
+        stmt.executeUpdate();
         connexion.close();
     }
-    
-     public String[] getAllCompet() throws SQLException {
+
+    public String[] getAllCompet() throws SQLException {
         Connection_Competition();
         Statement statement = connexion.createStatement();
         int taille = 0;
@@ -183,7 +193,7 @@ Connection_Competition();
 
         while (result.next()) {
 
-            tabNomPrenom[i] = result.getString("id_compet") + "-" + result.getString("Titre") ;
+            tabNomPrenom[i] = result.getString("id_compet") + "-" + result.getString("Titre");
             i++;
 
         }
@@ -220,6 +230,5 @@ Connection_Competition();
         return tabID;
 
     }
-
 
 }

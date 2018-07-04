@@ -96,12 +96,13 @@ public class Compose {
         Connection_Compose();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM compose WHERE id_personne = '" + id_personne + "'");
+        int id_equipe_Return = 0;
         while (result.next()) {
-            return result.getInt("id_equipe");
+            id_equipe_Return = result.getInt("id_equipe");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return id_equipe_Return;
     }
 
     public void setId_equipe(int id_equipe, int id_personne) throws SQLException {
@@ -117,12 +118,13 @@ public class Compose {
         Connection_Compose();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM compose WHERE id_personne = '" + id_personne + "'");
+        int id_Personne_Return = 0;
         while (result.next()) {
-            return result.getInt("id_equipe");
+            id_Personne_Return = result.getInt("id_equipe");
         }
         statement.close();
         connexion.close();
-        return 0;
+        return id_Personne_Return;
     }
 
     public void setId_personne(int id_personne) {
