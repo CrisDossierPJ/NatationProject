@@ -33,22 +33,21 @@ public class RunMeTask extends TimerTask {
         this.button = button;
         this.labelEquipe = labelEquipe;
         this.minuteSauv = minute;
-        
 
     }
 
     @Override
     public void run() {
         //minuteSauv = minute;
-      //  System.out.println("MINute "+minuteSauv);
+        //  System.out.println("MINute "+minuteSauv);
         try {
             labelEquipe.setText(equipe.getEquipeEncours());
             if (equipe.getEquipeEncours().equals("Aucune equipe en cours") == false) {
 
                 button.setEnabled(true);
                 seconde--;
-                
-               // System.out.println(minute + "m" + seconde + "s");
+
+                // System.out.println(minute + "m" + seconde + "s");
                 myLabel.setText(minute + "m" + seconde + "s");
                 if (seconde == 0 && minute == 0) {
                     button.setEnabled(false);
@@ -62,11 +61,11 @@ public class RunMeTask extends TimerTask {
                 }
 
             } else {
-              //  System.out.println("MINUTE SAVER "+minuteSauv);
-                minute = minuteSauv -1 ;
+                //  System.out.println("MINUTE SAVER "+minuteSauv);
+                minute = minuteSauv - 1;
                 seconde = 60;
                 button.setEnabled(false);
-             //   System.out.println("Aucune equipe en cours");
+                //   System.out.println("Aucune equipe en cours");
             }
         } catch (SQLException ex) {
             Logger.getLogger(RunMeTask.class.getName()).log(Level.SEVERE, null, ex);

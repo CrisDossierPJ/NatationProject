@@ -72,12 +72,14 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
     }
 
-    public void refresh() throws SQLException {
-
-        buttonNoterJuge.setEnabled(false);
+    public void TimerStart() throws SQLException {
         TimerTask task = new RunMeTask(labelEquipe, labelMinuteur, 5, buttonNoterJuge);
         Timer timer = new Timer();
         timer.schedule(task, 0, 1000);
+        buttonNoterJuge.setEnabled(false);
+    }
+
+    public void refresh() throws SQLException {
 
         dataModelUser = utilisateur.buildTableModelUser();
         dataModelPersonne = personne.buildTableModelPersonne();
@@ -138,6 +140,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                     if (utilisateur.Authentification(login.getText(), pass.getText()) == true) {
                         initComponents();
                         refresh();
+                        TimerStart();
                         fenetre.dispose();
 
                         login(login.getText());
@@ -3617,6 +3620,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             int id_equipe = Integer.parseInt(id_String);
             equipe.setAllNotVisible();
             equipe.setVisible(1, id_equipe);
+            TimerStart();
             refresh();
         } catch (SQLException ex) {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
@@ -3664,7 +3668,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             // System.out.println("note : " + curseur + " Equipe ! " + id_equipe + " personne ! " + id_personne);
 
             note = new note(curseur, id_equipe, id_personne, 0);
-            refresh();
+
+            // refresh();
         } catch (SQLException ex) {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
         }

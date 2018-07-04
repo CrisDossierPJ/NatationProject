@@ -397,7 +397,7 @@ public class Equipe {
         Connection_Equipe();
         Statement statement = connexion.createStatement();
         ResultSet result = statement.executeQuery("select * from equipe Where visible = true");
-        String nom_equipe_Return = "";
+        String nom_equipe_Return = "Aucune equipe en cours";
         while (result.next()) {
             nom_equipe_Return = result.getString("nom_equipe");
         }
