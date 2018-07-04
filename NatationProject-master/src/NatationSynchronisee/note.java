@@ -26,6 +26,7 @@ public class note {
     int id_equipe;
     int id_personne;
     int visible;
+    Equipe equipe;
 
     Connection connexion = null;
     ResultSet resultSet = null;
@@ -51,12 +52,17 @@ public class note {
     }
 
     public note() {
+
     }
 
     public DefaultTableModel buildTableModelNote() throws SQLException {
         Connection_Note();
         Statement statement = connexion.createStatement();
-        ResultSet rs = statement.executeQuery("select * from note");
+        this.equipe = new Equipe();
+        ResultSet rs = statement.executeQuery("select n.note, e.nom_equipe, co.titre, n.visible from note n\n"
+                + "join equipe e on n.id_equipe = e.id_equipe\n"
+                + "join competition co on e.id_compet = co.id_compet\n"
+                + "WHERE e.id_equipe = " + equipe.getIdEquipeEncours());
 
         ResultSetMetaData metaData = rs.getMetaData();
 
@@ -85,6 +91,7 @@ public class note {
     }
 
     public note(int note, int id_equipe, int id_personne, int visible) throws SQLException {
+        this.equipe = new Equipe();
         Connection_Note();
         this.note = note;
         this.id_equipe = id_equipe;
