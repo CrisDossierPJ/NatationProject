@@ -1295,7 +1295,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(75, 75, 75))
+                                        .addGap(71, 71, 71))
                                 );
                                 jPanel3Layout.setVerticalGroup(
                                     jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
