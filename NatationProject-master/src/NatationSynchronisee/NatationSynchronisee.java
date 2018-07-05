@@ -306,7 +306,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                         try{
                             textdateCreationClub1 = new javax.swing.JFormattedTextField(new MaskFormatter("####-##-##"));
                             jLabel79 = new javax.swing.JLabel();
-                            jComboBoxDirigeant = new javax.swing.JComboBox<>(personneForDirigeant());
+                            jComboBoxDirigeant = new javax.swing.JComboBox<>(personneForUser());
                             jPanel17 = new javax.swing.JPanel();
                             jLabel50 = new javax.swing.JLabel();
                             jLabel51 = new javax.swing.JLabel();
@@ -354,6 +354,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                 textFindUtilisateur = new javax.swing.JTextField();
                                 jLabel72 = new javax.swing.JLabel();
                                 listPersonne = new javax.swing.JComboBox<>(personneForUser());
+                                updateUser1 = new javax.swing.JButton();
                                 jPanel19 = new javax.swing.JPanel();
                                 jLabel28 = new javax.swing.JLabel();
                                 AddUser = new javax.swing.JButton();
@@ -1117,17 +1118,14 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                     .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel60)
                                                         .addComponent(jLabel59))
+                                                    .addGap(24, 24, 24)
                                                     .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel18Layout.createSequentialGroup()
-                                                            .addGap(24, 24, 24)
-                                                            .addComponent(jTextClub, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(jPanel18Layout.createSequentialGroup()
-                                                            .addGap(27, 27, 27)
-                                                            .addComponent(jComboBoxDirigeant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(jTextClub, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jComboBoxDirigeant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                 .addGroup(jPanel18Layout.createSequentialGroup()
                                                     .addGap(283, 283, 283)
                                                     .addComponent(jLabel58)))
-                                            .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGap(0, 365, Short.MAX_VALUE))
                                         .addGroup(jPanel18Layout.createSequentialGroup()
                                             .addContainerGap()
                                             .addComponent(jLabel79)
@@ -1156,7 +1154,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                             .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jLabel79)
                                                 .addComponent(textdateCreationClub1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                                             .addComponent(CreerClub)
                                             .addGap(19, 19, 19))
                                     );
@@ -1484,6 +1482,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                     }
                                 });
 
+                                updateUser1.setText("Modifier Mot de passe");
+
                                 javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
                                 jPanel12.setLayout(jPanel12Layout);
                                 jPanel12Layout.setHorizontalGroup(
@@ -1519,7 +1519,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                 .addGap(132, 132, 132)
                                                 .addComponent(boxRang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel12Layout.createSequentialGroup()
-                                                .addComponent(buttonAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(buttonAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                                    .addComponent(updateUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(updateUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1591,7 +1593,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                     .addComponent(buttonAddUser)
                                                     .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(updateUser)))
+                                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(updateUser)
+                                                    .addComponent(updateUser1))))
                                         .addContainerGap(32, Short.MAX_VALUE))
                                 );
 
@@ -2918,6 +2922,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             int id_compet = Integer.parseInt(jTableCompet.getModel().getValueAt(modelRow, jTableCompet.getSelectedColumn()).toString());
             textTitreCompet.setText(compet.getTitre(id_compet));
             textdateCreationCompet.setText(compet.getDate_Compet(id_compet));
+            textdatefinCompet.setText(compet.getfin_Date_Compet(id_compet));
             textLieuCompet.setText(compet.getLieu_Compet(id_compet));
 
         } catch (SQLException ex) {
@@ -3119,7 +3124,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
             utilisateur.setEstAdmin(estadmin, Integer.parseInt(allIdPersonne[index]));
             utilisateur.setEstCreateurCompet(estCreateurCompet, Integer.parseInt(allIdPersonne[index]));
-            utilisateur.setPasswd(textLogin.getText(), Integer.parseInt(allIdPersonne[index]));
+            //utilisateur.setPasswd(textLogin.getText(), Integer.parseInt(allIdPersonne[index]));
             Object test = listPersonne.getSelectedItem();
 
             refresh();
@@ -3737,10 +3742,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_listPersonneClubActionPerformed
 
-    private void jComboBoxDirigeantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDirigeantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxDirigeantActionPerformed
-
     private void refeshJAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refeshJAActionPerformed
         try {
             // TODO add your handling code here:
@@ -3757,6 +3758,10 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private void jTextFinDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFinDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFinDateActionPerformed
+
+    private void jComboBoxDirigeantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDirigeantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxDirigeantActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4013,6 +4018,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JTextField textprenomPersonne;
     private javax.swing.JButton updatePersonne;
     private javax.swing.JButton updateUser;
+    private javax.swing.JButton updateUser1;
     private javax.swing.JComboBox<String> valeur_penalite;
     private javax.swing.JButton valideNote;
     // End of variables declaration//GEN-END:variables
