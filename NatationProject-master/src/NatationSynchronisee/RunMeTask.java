@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class RunMeTask extends TimerTask {
 
@@ -25,14 +27,18 @@ public class RunMeTask extends TimerTask {
     int minuteSauv = 0;
     int seconde = 60;
     Equipe equipe;
+    private DefaultTableModel dataModelNote;
+    note note = new note();
+    JTable jTableNote;
 
-    public RunMeTask(JLabel labelEquipe, JLabel myLabel, int minute, JButton button) throws SQLException {
+    public RunMeTask(JLabel labelEquipe, JLabel myLabel, int minute, JButton button, JTable jTableNote) throws SQLException {
         this.equipe = new Equipe();
         this.myLabel = myLabel;
         this.minute = minute - 1;
         this.button = button;
         this.labelEquipe = labelEquipe;
         this.minuteSauv = minute;
+        this.jTableNote = jTableNote;
 
     }
 
@@ -41,6 +47,8 @@ public class RunMeTask extends TimerTask {
         //minuteSauv = minute;
         //  System.out.println("MINute "+minuteSauv);
         try {
+            dataModelNote = note.buildTableModelNote();
+            this.jTableNote.setModel(this.dataModelNote);
             labelEquipe.setText(equipe.getEquipeEncours());
             if (equipe.getEquipeEncours().equals("Aucune equipe en cours") == false) {
 

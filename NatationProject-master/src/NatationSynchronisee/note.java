@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class note {
 
-    int note;
+    double note;
     int id_equipe;
     int id_personne;
     int visible;
@@ -151,7 +151,7 @@ public class note {
         return note_Return;
     }
 
-    public void setNote(int note, int id_personne, int id_equipe) throws SQLException {
+    public void setNote(double note, int id_personne, int id_equipe) throws SQLException {
         Connection_Note();
         this.note = note;
         PreparedStatement stmt = connexion.prepareStatement("UPDATE note SET note = '" + note + "' WHERE id_personne = '" + id_personne + "' AND id_equipe = '" + id_equipe + "'");
@@ -190,7 +190,18 @@ public class note {
         stmt.close();
     }
 
-    public int getNotejuge(int rang) throws SQLException {
+    public void setNoteJuge(int id_equipe) throws SQLException {
+        Connection_Note();
+        this.id_personne = id_personne;
+        PreparedStatement stmt = connexion.prepareStatement("update note set note = note - (select penalite from equipe where note.id_equipe = equipe.id_equipe "
+                + "and equipe.id_equipe = " + id_equipe
+                + ")");
+        stmt.executeUpdate();
+        connexion.close();
+        stmt.close();
+    }
+
+    public double getNotejuge(int rang) throws SQLException {
 
         Connection_Note();
         Statement statement = connexion.createStatement();
@@ -199,9 +210,9 @@ public class note {
                 + "join equipe on equipe.id_equipe = note.id_equipe\n"
                 + "WHERE rang = " + rang + " and equipe.visible = true;");
 
-        int note_Return = 0;
+        double note_Return = 0;
         while (result.next()) {
-            note_Return = result.getInt("note");
+            note_Return = result.getDouble("note");
         }
         statement.close();
         connexion.close();

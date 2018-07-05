@@ -73,7 +73,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     }
 
     public void TimerStart() throws SQLException {
-        TimerTask task = new RunMeTask(labelEquipe, labelMinuteur, 5, buttonNoterJuge);
+        TimerTask task = new RunMeTask(labelEquipe, labelMinuteur, 5, buttonNoterJuge, jTableNote);
         Timer timer = new Timer();
         timer.schedule(task, 0, 1000);
         buttonNoterJuge.setEnabled(false);
@@ -101,6 +101,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         DefaultComboBoxModel modelPersonne = new DefaultComboBoxModel(personneForUser());
         DefaultComboBoxModel modelCompet = new DefaultComboBoxModel(competForEquipe());
         DefaultComboBoxModel modelClub = new DefaultComboBoxModel(clubForEquipe());
+
         listPersonne.setModel(modelPersonne);
         listePersonneForNageuse.setModel(modelPersonne);
         listPersonneClub.setModel(modelPersonne);
@@ -3565,6 +3566,8 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
             double penalite = Double.parseDouble(valeur_penalite.getSelectedItem().toString());
             equipe.setPenalite(penalite, equipe_int);
+            note.setNoteJuge(equipe_int);
+
             refresh();
         } catch (SQLException ex) {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
@@ -3632,11 +3635,11 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         //  int note, int id_personne, int id_equipe
         try {
 
-            note.setNote(Integer.parseInt(textJugeNote1.getText()), equipe.getIdJuge(1), equipe.getIdEquipe(1));
-            note.setNote(Integer.parseInt(textJugeNote2.getText()), equipe.getIdJuge(2), equipe.getIdEquipe(2));
-            note.setNote(Integer.parseInt(textJugeNote3.getText()), equipe.getIdJuge(3), equipe.getIdEquipe(3));
-            note.setNote(Integer.parseInt(textJugeNote4.getText()), equipe.getIdJuge(4), equipe.getIdEquipe(4));
-            note.setNote(Integer.parseInt(textJugeNote5.getText()), equipe.getIdJuge(5), equipe.getIdEquipe(5));
+            note.setNote(Double.parseDouble(textJugeNote1.getText()), equipe.getIdJuge(1), equipe.getIdEquipe(1));
+            note.setNote(Double.parseDouble(textJugeNote2.getText()), equipe.getIdJuge(2), equipe.getIdEquipe(2));
+            note.setNote(Double.parseDouble(textJugeNote3.getText()), equipe.getIdJuge(3), equipe.getIdEquipe(3));
+            note.setNote(Double.parseDouble(textJugeNote4.getText()), equipe.getIdJuge(4), equipe.getIdEquipe(4));
+            note.setNote(Double.parseDouble(textJugeNote5.getText()), equipe.getIdJuge(5), equipe.getIdEquipe(5));
 
             refresh();
         } catch (SQLException ex) {
@@ -3684,6 +3687,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
             int id_equipe = Integer.parseInt(id_String);
 
             note.setVisible(1, id_equipe);
+            refresh();
         } catch (SQLException ex) {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
         }
