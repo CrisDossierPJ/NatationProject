@@ -329,7 +329,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                 jTableNote = new javax.swing.JTable();
                                 jButton6 = new javax.swing.JButton();
                                 jLabel19 = new javax.swing.JLabel();
-                                refresh3 = new javax.swing.JToggleButton();
                                 panelAdmin = new javax.swing.JPanel();
                                 jLabel2 = new javax.swing.JLabel();
                                 jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -1340,50 +1339,33 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                                 jLabel19.setText("Résultat");
 
-                                refresh3.setText("Rafraichir");
-                                refresh3.addActionListener(new java.awt.event.ActionListener() {
-                                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        refresh3ActionPerformed(evt);
-                                    }
-                                });
-
                                 javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
                                 jPanel4.setLayout(jPanel4Layout);
                                 jPanel4Layout.setHorizontalGroup(
                                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addContainerGap()
+                                        .addContainerGap(73, Short.MAX_VALUE)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                .addComponent(refresh3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jButton6)
                                                 .addGap(34, 34, 34))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                .addGap(0, 63, Short.MAX_VALUE)
-                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                        .addComponent(jLabel19)
-                                                        .addGap(411, 411, 411))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(56, 56, 56))))))
+                                                .addComponent(jLabel19)
+                                                .addGap(411, 411, 411))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(56, 56, 56))))
                                 );
                                 jPanel4Layout.setVerticalGroup(
                                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addContainerGap(12, Short.MAX_VALUE)
                                         .addComponent(jLabel19)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                .addComponent(jButton6)
-                                                .addGap(22, 22, 22))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                .addComponent(refresh3)
-                                                .addContainerGap())))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                        .addComponent(jButton6)
+                                        .addGap(22, 22, 22))
                                 );
 
                                 jTabbedPane2.addTab("Resultat", jPanel4);
@@ -3134,9 +3116,10 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
             utilisateur.setLogin(textLogin.getText(), Integer.parseInt(allIdPersonne[index]));
             //        System.out.println("MDP !!" + textPass.getText());
-            utilisateur.setPasswd(textPass.getText(), Integer.parseInt(allIdPersonne[index]));
+
             utilisateur.setEstAdmin(estadmin, Integer.parseInt(allIdPersonne[index]));
             utilisateur.setEstCreateurCompet(estCreateurCompet, Integer.parseInt(allIdPersonne[index]));
+            utilisateur.setPasswd(textLogin.getText(), Integer.parseInt(allIdPersonne[index]));
             Object test = listPersonne.getSelectedItem();
 
             refresh();
@@ -3691,10 +3674,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxClubForAffichNoteActionPerformed
 
-    private void refresh3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refresh3ActionPerformed
-
     private void StopResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopResultActionPerformed
         // TODO add your handling code here:
 
@@ -4005,7 +3984,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioButJugeArb;
     private javax.swing.JButton refeshJA;
     private javax.swing.JToggleButton refresh;
-    private javax.swing.JToggleButton refresh3;
     private javax.swing.JButton stopBallet;
     private javax.swing.JTable tablePersonne;
     private javax.swing.JTextField textFindClub;
