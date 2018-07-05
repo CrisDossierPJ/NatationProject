@@ -73,7 +73,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     }
 
     public void TimerStart() throws SQLException {
-        TimerTask task = new RunMeTask(labelEquipe, labelMinuteur, 5, buttonNoterJuge, jTableNote);
+        TimerTask task = new RunMeTask(labelEquipe, buttonNoterJuge, jTableNote);
         Timer timer = new Timer();
         timer.schedule(task, 0, 1000);
         buttonNoterJuge.setEnabled(false);
@@ -228,7 +228,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         panelJuge = new javax.swing.JPanel();
         labelNomJuge = new javax.swing.JLabel();
         labelEquipe = new javax.swing.JLabel();
-        labelMinuteur = new javax.swing.JLabel();
         buttonNoterJuge = new javax.swing.JButton();
         labelNote = new javax.swing.JLabel();
         SliderNote = new javax.swing.JSlider();
@@ -489,8 +488,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                                                         labelEquipe.setText("Equipe  x ");
 
-                                                        labelMinuteur.setText("Temps restant : ");
-
                                                         buttonNoterJuge.setText("Noter");
                                                         buttonNoterJuge.addActionListener(new java.awt.event.ActionListener() {
                                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -523,9 +520,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugeLayout.createSequentialGroup()
                                                                         .addGap(0, 172, Short.MAX_VALUE)
                                                                         .addComponent(labelNomJuge)
-                                                                        .addGap(420, 420, 420)
-                                                                        .addComponent(labelMinuteur)
-                                                                        .addGap(80, 80, 80))
+                                                                        .addGap(579, 579, 579))
                                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugeLayout.createSequentialGroup()
                                                                         .addComponent(refresh)
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -547,16 +542,14 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                             panelJugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                             .addGroup(panelJugeLayout.createSequentialGroup()
                                                                 .addGap(25, 25, 25)
-                                                                .addGroup(panelJugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                    .addComponent(labelNomJuge)
-                                                                    .addComponent(labelMinuteur))
+                                                                .addComponent(labelNomJuge)
                                                                 .addGap(87, 87, 87)
                                                                 .addGroup(panelJugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                     .addComponent(labelEquipe)
                                                                     .addComponent(SliderNote, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addGap(18, 18, 18)
                                                                 .addComponent(labelNote)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
                                                                 .addGroup(panelJugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                                     .addComponent(buttonNoterJuge)
                                                                     .addComponent(refresh))
@@ -3997,7 +3990,6 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JTable jtableClub;
     private javax.swing.JLabel labelEquipe;
     private javax.swing.JLabel labelID;
-    private javax.swing.JLabel labelMinuteur;
     private javax.swing.JLabel labelNomJuge;
     private javax.swing.JLabel labelNote;
     private javax.swing.JLabel labelRangJuge;

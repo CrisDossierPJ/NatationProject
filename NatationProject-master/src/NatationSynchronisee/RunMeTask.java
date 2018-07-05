@@ -20,24 +20,22 @@ import javax.swing.table.DefaultTableModel;
 
 public class RunMeTask extends TimerTask {
 
-    JLabel myLabel = new JLabel();
     JLabel labelEquipe = new JLabel();
     JButton button = new JButton();
-    int minute = 0;
-    int minuteSauv = 0;
-    int seconde = 60;
+    // int minute = 0;
+    // int minuteSauv = 0;
+    //  int seconde = 60;
     Equipe equipe;
     private DefaultTableModel dataModelNote;
     note note = new note();
     JTable jTableNote;
 
-    public RunMeTask(JLabel labelEquipe, JLabel myLabel, int minute, JButton button, JTable jTableNote) throws SQLException {
+    public RunMeTask(JLabel labelEquipe, JButton button, JTable jTableNote) throws SQLException {
         this.equipe = new Equipe();
-        this.myLabel = myLabel;
-        this.minute = minute - 1;
+        // this.minute = minute - 1;
         this.button = button;
         this.labelEquipe = labelEquipe;
-        this.minuteSauv = minute;
+        //  this.minuteSauv = minute;
         this.jTableNote = jTableNote;
 
     }
@@ -53,7 +51,8 @@ public class RunMeTask extends TimerTask {
             if (equipe.getEquipeEncours().equals("Aucune equipe en cours") == false) {
 
                 button.setEnabled(true);
-                seconde--;
+
+                /*seconde--;
 
                 // System.out.println(minute + "m" + seconde + "s");
                 myLabel.setText(minute + "m" + seconde + "s");
@@ -74,6 +73,9 @@ public class RunMeTask extends TimerTask {
                 seconde = 60;
                 button.setEnabled(false);
                 //   System.out.println("Aucune equipe en cours");
+            }*/
+            } else {
+                button.setEnabled(false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(RunMeTask.class.getName()).log(Level.SEVERE, null, ex);

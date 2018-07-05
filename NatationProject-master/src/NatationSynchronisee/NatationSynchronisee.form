@@ -142,9 +142,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="172" max="32767" attributes="0"/>
                                   <Component id="labelNomJuge" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="420" max="-2" attributes="0"/>
-                                  <Component id="labelMinuteur" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="579" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="refresh" min="-2" max="-2" attributes="0"/>
@@ -175,10 +173,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelNomJuge" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelMinuteur" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="labelNomJuge" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelEquipe" min="-2" max="-2" attributes="0"/>
@@ -186,7 +181,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="labelNote" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="196" max="32767" attributes="0"/>
+                          <EmptySpace pref="206" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="buttonNoterJuge" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="refresh" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -208,11 +203,6 @@
                 <Component class="javax.swing.JLabel" name="labelEquipe">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Equipe  x "/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="labelMinuteur">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Temps restant : "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="buttonNoterJuge">
