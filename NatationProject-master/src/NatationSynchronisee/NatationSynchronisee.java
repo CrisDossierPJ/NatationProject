@@ -5,6 +5,9 @@
  */
 package NatationSynchronisee;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -503,7 +506,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                                 .addContainerGap()
                                                                 .addGroup(panelJugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugeLayout.createSequentialGroup()
-                                                                        .addGap(0, 172, Short.MAX_VALUE)
+                                                                        .addGap(0, 175, Short.MAX_VALUE)
                                                                         .addComponent(labelNomJuge)
                                                                         .addGap(579, 579, 579))
                                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugeLayout.createSequentialGroup()
@@ -521,7 +524,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                                     .addGroup(panelJugeLayout.createSequentialGroup()
                                                                         .addGap(392, 392, 392)
                                                                         .addComponent(labelNote)))
-                                                                .addGap(0, 257, Short.MAX_VALUE))
+                                                                .addGap(0, 260, Short.MAX_VALUE))
                                                         );
                                                         panelJugeLayout.setVerticalGroup(
                                                             panelJugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -801,7 +804,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                                         .addComponent(jLabel3)
@@ -1276,7 +1279,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(374, 374, 374)
                                         .addComponent(jLabel4)
-                                        .addContainerGap(392, Short.MAX_VALUE))
+                                        .addContainerGap(395, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1327,7 +1330,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                 jPanel4Layout.setHorizontalGroup(
                                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addContainerGap(73, Short.MAX_VALUE)
+                                        .addContainerGap(76, Short.MAX_VALUE)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                                 .addComponent(jButton6)
@@ -2490,7 +2493,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Admin", panelAdmin);
 
-        buttonDeleteClub1.setText("Déconnection");
+        buttonDeleteClub1.setText("Voir les mentions légales");
         buttonDeleteClub1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteClub1ActionPerformed(evt);
@@ -2510,7 +2513,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                         .addGap(431, 431, 431)
                         .addComponent(jLabel1)
                         .addGap(304, 304, 304)
-                        .addComponent(buttonDeleteClub1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)))
+                        .addComponent(buttonDeleteClub1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelGlobalLayout.setVerticalGroup(
@@ -3762,13 +3765,13 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxDirigeantActionPerformed
 
     private void buttonDeleteClub1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteClub1ActionPerformed
-
-        //    popup();
         try {
-            popup();
-
-            //initComponents();
-        } catch (SQLException ex) {
+            File htmlFile = new File("src\\mentions_legales\\test.html");
+          //  D:\WINDOWS\Mes documents\NetBeansProjects\NatationProject\NatationProject-master\src\mentions_legales\test.html
+            Desktop.getDesktop().browse(htmlFile.toURI());
+            //Desktop desk = Desktop.getDesktop();
+            //desk.open(new File());
+        } catch (IOException ex) {
             Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -3785,7 +3788,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("CDE/Motif".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

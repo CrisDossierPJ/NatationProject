@@ -68,7 +68,7 @@
                           <EmptySpace min="-2" pref="431" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
-                          <Component id="buttonDeleteClub1" pref="146" max="32767" attributes="0"/>
+                          <Component id="buttonDeleteClub1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -121,7 +121,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="172" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="175" max="32767" attributes="0"/>
                                   <Component id="labelNomJuge" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="579" max="-2" attributes="0"/>
                               </Group>
@@ -146,7 +146,7 @@
                                   <Component id="labelNote" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="257" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="260" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -232,7 +232,7 @@
                               <Component id="jPanel7" max="32767" attributes="0"/>
                               <Component id="jPanel5" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -722,7 +722,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="374" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="392" max="32767" attributes="0"/>
+                          <EmptySpace pref="395" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
@@ -1442,7 +1442,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="73" max="32767" attributes="0"/>
+                          <EmptySpace pref="76" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButton6" min="-2" max="-2" attributes="0"/>
@@ -3264,7 +3264,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="buttonDeleteClub1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="D&#xe9;connection"/>
+            <Property name="text" type="java.lang.String" value="Voir les mentions l&#xe9;gales"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteClub1ActionPerformed"/>
