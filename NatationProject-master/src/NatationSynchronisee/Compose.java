@@ -34,7 +34,7 @@ public class Compose {
     String host = bundle.getString("bdd.hostname");
     String port = bundle.getString("bdd.port");
 
-    public void Connection_Compose() {
+    public void Connection_Compose() throws SQLException {
         try {
             // Class.forName("com.mysql.jdbc.Driver");
             Class.forName("org.postgresql.Driver");
@@ -46,6 +46,7 @@ public class Compose {
         } catch (SQLException e) {
             System.out.println(e);
         }
+      
     }
 
     public Compose() {

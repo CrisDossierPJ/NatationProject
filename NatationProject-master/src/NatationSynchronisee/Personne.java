@@ -76,6 +76,7 @@ public class Personne {
             data.add(vector);
         }
         statement.close();
+        connexion.close();
         return new DefaultTableModel(data, columnNames);
 
     }

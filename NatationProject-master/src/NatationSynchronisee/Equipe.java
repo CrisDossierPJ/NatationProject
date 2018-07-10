@@ -52,6 +52,7 @@ public class Equipe {
         } catch (SQLException e) {
             System.out.println(e);
         }
+        
     }
 
     public DefaultTableModel buildTableModelEquipe() throws SQLException {
@@ -78,6 +79,7 @@ public class Equipe {
             data.add(vector);
         }
         statement.close();
+        connexion.close();
         return new DefaultTableModel(data, columnNames);
 
     }

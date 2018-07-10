@@ -71,6 +71,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         dataModelEquipe = equipe.buildTableModelEquipe();
         dataModelNageuse = nageuse.buildTableModelNageuse();
         dataModelNote = note.buildTableModelNote();
+
         popup();
 
     }
@@ -149,7 +150,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
 
                         login(login.getText());
                         personne.setInfos(login.getText());
+
                         labelNomJuge.setText("Bonjour " + personne.getNomAuth() + " " + personne.getPrenomAuth() + " n°" + juge.getRang(personne.getId_personne()));
+                        jFrame1.setAlwaysOnTop(true);
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,6 +163,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
         fenetre.setSize(150, 150);
         fenetre.toFront();
         fenetre.setAlwaysOnTop(true);
+
         labelLogin.setText("Nom d'utilisateur ");
         pan.add(labelLogin);
         pan.add(login);
@@ -222,6 +226,9 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        labMentionLegale = new javax.swing.JTextArea();
         panelGlobal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -459,6 +466,31 @@ public class NatationSynchronisee extends javax.swing.JFrame {
                                                     try{
                                                         textdateCreationEquipe = new javax.swing.JFormattedTextField(new MaskFormatter("####-##-##"));
                                                         buttonDeleteClub1 = new javax.swing.JButton();
+
+                                                        jFrame1.setTitle("Mentions Légales");
+                                                        jFrame1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                                                        jFrame1.setMinimumSize(new java.awt.Dimension(914, 542));
+
+                                                        labMentionLegale.setColumns(20);
+                                                        labMentionLegale.setRows(5);
+                                                        jScrollPane1.setViewportView(labMentionLegale);
+
+                                                        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+                                                        jFrame1.getContentPane().setLayout(jFrame1Layout);
+                                                        jFrame1Layout.setHorizontalGroup(
+                                                            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addGroup(jFrame1Layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                                                                .addContainerGap())
+                                                        );
+                                                        jFrame1Layout.setVerticalGroup(
+                                                            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addGroup(jFrame1Layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                                                                .addContainerGap())
+                                                        );
 
                                                         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                                                         setTitle("Natation Synchronisée");
@@ -3765,15 +3797,78 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxDirigeantActionPerformed
 
     private void buttonDeleteClub1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteClub1ActionPerformed
-        try {
-            File htmlFile = new File("src\\mentions_legales\\test.html");
-          //  D:\WINDOWS\Mes documents\NetBeansProjects\NatationProject\NatationProject-master\src\mentions_legales\test.html
-            Desktop.getDesktop().browse(htmlFile.toURI());
-            //Desktop desk = Desktop.getDesktop();
-            //desk.open(new File());
-        } catch (IOException ex) {
-            Logger.getLogger(NatationSynchronisee.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        jFrame1.setVisible(true);
+        labMentionLegale.setText("Informations légales\n"
+                + "1. Présentation de l'application.\n"
+                + "En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs de l'application Dolphin. L'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :\n"
+                + "\n"
+                + "Propriétaire : OLITS – SARL – 133 Rue Marius Berliet, 69008 Lyon\n"
+                + "Créateur : OLITS\n"
+                + "Responsable publication : OLITS – http://www.ort-lyon.fr/\n"
+                + "Le responsable publication est une personne physique ou une personne morale.\n"
+                + "Webmaster : OLITS – http://www.ort-lyon.fr/\n"
+                + "Hébergeur : OLITS – 69008\n"
+                + "Crédits : Christian Attia, Célestine Chareyre, Florent Lalisse et Bruno Marques.\n"
+                + "2. Conditions générales d’utilisation de l'application et des services proposés.\n"
+                + "L’utilisation de l'application Dolphin implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs de l'application Dolphin sont donc invités à les consulter de manière régulière.\n"
+                + "\n"
+                + "Cette application est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de maintenance technique peut être toutefois décidée par OLITS, qui s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention.\n"
+                + "\n"
+                + "L'application Dolphin est mise à jour régulièrement par OLITS. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre connaissance.\n"
+                + "\n"
+                + "3. Description des services fournis.\n"
+                + "l'application Dolphin a pour objet d'informatiser la gestion des compétitions de natation synchronisée.\n"
+                + "\n"
+                + "OLITS s’efforce de fournir sur l'application Dolphin des informations aussi précises que possible. Toutefois, il ne pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.\n"
+                + "\n"
+                + "Tous les informations indiquées sur l'application Dolphin sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur l'application Dolphin ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.\n"
+                + "\n"
+                + "4. Limitations contractuelles sur les données techniques.\n"
+                + "l'application utilise la technologie Java client lourd.\n"
+                + "\n"
+                + "l'application ne pourra être tenu responsable de dommages matériels liés à l’utilisation de l'application. De plus, l’utilisateur de l'application s’engage à accéder au application en utilisant un matériel récent et ne contenant pas de virus.\n"
+                + "\n"
+                + "5. Propriété intellectuelle et contrefaçons.\n"
+                + "OLITS est propriétaire des droits de propriété intellectuelle ou détient les droits d’usage sur tous les éléments accessibles sur l'application, notamment les textes, images, graphismes, logo, icônes, sons, logiciels.\n"
+                + "\n"
+                + "Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments de l'application, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : OLITS.\n"
+                + "\n"
+                + "Toute exploitation non autorisée de l'application ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.\n"
+                + "\n"
+                + "6. Limitations de responsabilité.\n"
+                + "OLITS ne pourra être tenue responsable des dommages directs et indirects causés au matériel de l’utilisateur, lors de l’accès au application Dolphin, et résultant soit de l’utilisation d’un matériel ne répondant pas aux spécifications indiquées au point 4, soit de l’apparition d’un bug ou d’une incompatibilité.\n"
+                + "\n"
+                + "OLITS ne pourra également être tenue responsable des dommages indirects (tels par exemple qu’une perte de marché ou perte d’une chance) consécutifs à l’utilisation de l'application Dolphin.\n"
+                + "\n"
+                + "Des espaces interactifs (possibilité de poser des questions dans l’espace contact) sont à la disposition des utilisateurs. OLITS se réserve le droit de supprimer, sans mise en demeure préalable, tout contenu déposé dans cet espace qui contreviendrait à la législation applicable en France, en particulier aux dispositions relatives à la protection des données. Le cas échéant, OLITS se réserve également la possibilité de mettre en cause la responsabilité civile et/ou pénale de l’utilisateur, notamment en cas de message à caractère raciste, injurieux, diffamant, ou pornographique, quel que soit le support utilisé (texte, photographie…).\n"
+                + "\n"
+                + "7. Gestion des données personnelles.\n"
+                + "En France, les données personnelles sont notamment protégées par la loi n° 78-87 du 6 janvier 1978, la loi n° 2004-801 du 6 août 2004, l'article L. 226-13 du Code pénal et la Directive Européenne du 24 octobre 1995.\n"
+                + "\n"
+                + "A l'occasion de l'utilisation de l'application Dolphin, peuvent êtres recueillies : l'URL des liens par l'intermédiaire desquels l'utilisateur a accédé au application Dolphin, le fournisseur d'accès de l'utilisateur, l'adresse de protocole Internet (IP) de l'utilisateur.\n"
+                + "\n"
+                + "En tout état de cause OLITS ne collecte des informations personnelles relatives à l'utilisateur que pour le besoin de certains services proposés par l'application Dolphin. L'utilisateur fournit ces informations en toute connaissance de cause, notamment lorsqu'il procède par lui-même à leur saisie. Il est alors précisé à l'utilisateur de l'application Dolphin l’obligation ou non de fournir ces informations.\n"
+                + "\n"
+                + "Conformément aux dispositions des articles 38 et suivants de la loi 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, tout utilisateur dispose d’un droit d’accès, de rectification et d’opposition aux données personnelles le concernant, en effectuant sa demande écrite et signée, accompagnée d’une copie du titre d’identité avec signature du titulaire de la pièce, en précisant l’adresse à laquelle la réponse doit être envoyée.\n"
+                + "\n"
+                + "Aucune information personnelle de l'utilisateur de l'application Dolphin n'est publiée à l'insu de l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule l'hypothèse du rachat de OLITS et de ses droits permettrait la transmission des dites informations à l'éventuel acquéreur qui serait à son tour tenu de la même obligation de conservation et de modification des données vis à vis de l'utilisateur de l'application Dolphin.\n"
+                + "\n"
+                + "l'application n'est pas déclaré à la CNIL car il ne recueille pas d'informations personnelles. .\n"
+                + "\n"
+                + "Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998 transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.\n"
+                + "\n"
+                + "9. Droit applicable et attribution de juridiction.\n"
+                + "Tout litige en relation avec l’utilisation de l'application Dolphin est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.\n"
+                + "\n"
+                + "10. Les principales lois concernées.\n"
+                + "Loi n° 78-17 du 6 janvier 1978, notamment modifiée par la loi n° 2004-801 du 6 août 2004 relative à l'informatique, aux fichiers et aux libertés.\n"
+                + "\n"
+                + "Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.\n"
+                + "\n"
+                + "11. Lexique.\n"
+                + "Utilisateur : Internaute se connectant, utilisant l'application susnommé.\n"
+                + "\n"
+                + "Informations personnelles : « les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).");
 
     }//GEN-LAST:event_buttonDeleteClub1ActionPerformed
 
@@ -3863,6 +3958,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonPenalite;
     private javax.swing.JComboBox<String> jComboBoxDirigeant;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3954,6 +4050,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3983,6 +4080,7 @@ public class NatationSynchronisee extends javax.swing.JFrame {
     private javax.swing.JTextField jTextPrenomNageuse;
     private javax.swing.JTextField jTextTitre;
     private javax.swing.JTable jtableClub;
+    private javax.swing.JTextArea labMentionLegale;
     private javax.swing.JLabel labelEquipe;
     private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelNomJuge;
